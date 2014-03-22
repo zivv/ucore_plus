@@ -6,6 +6,7 @@
 TOPDIR=$(shell pwd)
 Q :=@
 
+
 KTREE = $(TOPDIR)/src/kern-ucore
 ifndef O
 OBJPATH_ROOT := $(TOPDIR)/obj
@@ -21,6 +22,8 @@ export KCONFIG_CONFIG=$(CONFIG_SCRIPT)
 CONFIG_DIR := $(OBJPATH_ROOT)/config
 KCONFIG_AUTOCONFIG=$(CONFIG_DIR)/auto.conf
 KCONFIG_AUTOHEADER=$(CONFIG_DIR)/autoconf.h
+CONFIG_CONFIG_IN = $(KTREE)/arch/$(ARCH)/Kconfig
+CONFIG_DEFCONFIG = $(KTREE)/arch/$(ARCH)/configs/$(BOARD)_defconfig
 
 CONFIG_SHELL:=$(shell if [ -x "$$BASH" ]; then echo $$BASH; \
 	else if [ -x /bin/bash ]; then echo /bin/bash; \
@@ -32,12 +35,8 @@ MAKEFLAGS += -rR --no-print-directory
 
 #### CROSS COMPILE HERE ####
 ARCH ?= $(patsubst "%",%,$(UCONFIG_ARCH))
-ARCH ?= amd64
 BOARD ?= default
 CROSS_COMPILE ?= $(UCONFIG_CROSS_COMPILE)
-
-CONFIG_CONFIG_IN = $(KTREE)/arch/$(ARCH)/Kconfig
-CONFIG_DEFCONFIG = $(KTREE)/arch/$(ARCH)/configs/$(BOARD)_defconfig
 
 export CONFIG_SHELL quiet Q KBUILD_VERBOSE
 export ARCH CROSS_COMPILE
@@ -86,7 +85,7 @@ export HOSTAR HOSTAS HOSTCC HOSTCXX HOSTLD
 HOSTCFLAGS=$(CFLAGS_FOR_BUILD)
 export HOSTCFLAGS
 
-PHONY+=defconfig menuconfig clean all tags amd64tags run
+PHONY+=defconfig menuconfig clean all
 
 all: kernel
 
@@ -148,9 +147,7 @@ $(SFSIMG_LINK): $(SFSIMG_FILE)
 
 $(SFSIMG_FILE): $(TOOLS_MKSFS) userlib userapp FORCE | $(OBJPATH_ROOT)
 	@echo Making $@
-	@rm -rf $(TMPSFS)
 	@mkdir -p $(TMPSFS)
-	@mkdir -p $(TMPSFS)/lib/modules
 	@cp -r $(OBJPATH_ROOT)/user-ucore/bin $(TMPSFS)
 ifneq ($(UCORE_TEST),)
 	@cp -r $(OBJPATH_ROOT)/user-ucore/testbin $(TMPSFS)
@@ -158,7 +155,7 @@ endif
 	@$(Q)$(MAKE) -f $(TOPDIR)/src/user-ucore/Makefile -C $(TOPDIR)/src/user-ucore initial_dir
 	-cp -r $(TOPDIR)/src/user-ucore/_initial/* $(TMPSFS)
 	@rm -f $@
-	@dd if=/dev/zero of=$@ bs=1M count=$(UCONFIG_SFS_IMAGE_SIZE) >/dev/null 2>&1
+	@dd if=/dev/zero of=$@ bs=1048576 count=$(UCONFIG_SFS_IMAGE_SIZE)
 	@$(TOOLS_MKSFS) $@ $(TMPSFS)
 	@rm -rf $(TMPSFS)
 
@@ -170,7 +167,7 @@ swapimg: $(SWAPFS_FILE)
 
 $(SWAPFS_FILE): | $(OBJPATH_ROOT)
 	@echo Making $@
-	$(Q)dd if=/dev/zero of=$@ bs=1M count=128 >/dev/null 2>&1
+	$(Q)dd if=/dev/zero of=$@ bs=1048576 count=128 >/dev/null 2>&1
 endif
 
 $(OBJPATH_ROOT):
@@ -182,36 +179,13 @@ $(CONFIG_DIR):
 #	$(Q)rm -f $(KCONFIG_AUTOCONFIG) $(KCONFIG_AUTOHEADER)
 clean:
 	@echo CLEAN ALL
-	$(Q)rm -f  $(CONFIG_SCRIPT).old config.cmd .tmpconfig.h
+	$(Q)rm -f  $(CONFIG_SCRIPT).old 。config.cmd .tmpconfig.h
 	$(Q)rm -f $(SFSIMG_FILE)
 	$(Q)rm -rf $(OBJPATH_ROOT)
 	-$(Q)$(MAKE) -C $(CONFIG) clean
 	$(Q)$(MAKE) -C $(KTREE) -f Makefile.build clean
 	$(Q)$(MAKE) -f $(TOPDIR)/src/libs-user-ucore/Makefile -C $(TOPDIR)/src/libs-user-ucore  clean
 	$(Q)$(MAKE) -f $(TOPDIR)/src/user-ucore/Makefile -C $(TOPDIR)/src/user-ucore  clean
-	$(Q)rm -f tags
-
-indent:
-	$(Q)find $(TOPDIR)/src -name *.c -or -name *.h | grep -vf $(TOPDIR)/misc/indent-whitelist | xargs $(TOPDIR)/misc/Lindent
-	$(Q)rm -rf `find $(TOPDIR)/src -name *~`
-
-tags:
-	@echo TAGS ALL
-	$(Q)rm -f cscope.files cscope.in.out cscope.out cscope.po.out tags
-	$(Q)ctags -R .
-	$(Q)find . -type f -name "*.[chS]" >cscope.files
-	$(Q)cscope -bq 
-
-amd64tags:
-	$(Q)./buildamd64tags.sh
-runamd64: kernel sfsimg
-	qemu-system-x86_64  -serial mon:stdio -nographic -m 512m -hda obj/kernel.img -drive file=obj/sfs.img,media=disk,cache=writeback,index=2 -s 
-runamd64smp: kernel sfsimg
-	qemu-system-x86_64  -serial mon:stdio -nographic -m 1g -hda obj/kernel.img -smp 16 -numa node -numa node  -drive file=obj/sfs.img,media=disk,cache=writeback,index=2 -s 
-kvmamd64: kernel sfsimg
-	qemu-kvm  -serial mon:stdio -nographic -m 512m -hda obj/kernel.img -drive file=obj/sfs.img,media=disk,cache=writeback,index=2 -s 
-kvmamd64smp: kernel sfsimg
-	qemu-kvm  -serial mon:stdio -nographic -m 1g -hda obj/kernel.img -smp 16 -numa node -numa node  -drive file=obj/sfs.img,media=disk,cache=writeback,index=2 -s 
 
 FORCE:
 

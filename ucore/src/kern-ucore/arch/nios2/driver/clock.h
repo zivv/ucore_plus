@@ -11,3 +11,4 @@ void clock_init(void);
 void usleep(int usec);
 
 #endif /* !__KERN_DRIVER_CLOCK_H__ */
+

@@ -16,11 +16,12 @@
  * =====================================================================================
  */
 
+
 #ifndef  MACH_BOARD_PANDABOARD_H
 #define  MACH_BOARD_PANDABOARD_H
 
 #define PANDABOARD_IO_START 0x48000000
-#define PANDABOARD_UART0 (PANDABOARD_IO_START+0x20000)
+#define PANDABOARD_UART0 (PANDABOARD_IO_START+0x20000) 
 
 #define PANDABOARD_TIMER_BASE (PANDABOARD_IO_START+0x240600)
 
@@ -40,7 +41,7 @@
 //extern macro
 
 #define SDRAM0_START UCONFIG_DRAM_START
-#define SDRAM0_SIZE  UCONFIG_DRAM_SIZE	//256M
+#define SDRAM0_SIZE  UCONFIG_DRAM_SIZE //256M
 
 #define IO_SPACE_START PANDABOARD_IO_START
 #define IO_SPACE_SIZE  0x1000000
@@ -60,4 +61,4 @@ extern void board_init(void);
 
 #endif
 
-#endif
+#endif  

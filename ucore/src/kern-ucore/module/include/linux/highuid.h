@@ -20,6 +20,7 @@
  * with structures hard coded to 16 bits, such as in filesystems)
  */
 
+
 /*
  * This is the "overflow" UID and GID. They are used to signify uid/gid
  * overflow to old programs when they request uid/gid information but are
@@ -55,6 +56,7 @@ extern void __bad_gid(void);
 	(size >= sizeof(uid) ? (uid) : high2lowuid(uid))
 #define __convert_gid(size, gid) \
 	(size >= sizeof(gid) ? (gid) : high2lowgid(gid))
+	
 
 #else
 

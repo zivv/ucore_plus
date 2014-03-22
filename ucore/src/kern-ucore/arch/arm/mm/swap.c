@@ -31,12 +31,15 @@
 #include <error.h>
 #include <kio.h>
 
-void check_mm_shm_swap(void)
-{
-	kprintf("check_mm_shm_swap NOT impl\n");
+void
+check_mm_shm_swap(void){
+  kprintf("check_mm_shm_swap NOT impl\n");
 }
 
-void check_mm_swap(void)
-{
-	kprintf("check_mm_swap NOT impl\n");
+void
+check_mm_swap(void){
+  kprintf("check_mm_swap NOT impl\n");
 }
+
+
+

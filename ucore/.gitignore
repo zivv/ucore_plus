@@ -22,9 +22,3 @@ src/user-ucore/_initial
 
 # generated manuals
 *.man
-
-#ctags file
-tags
-
-#temp files
-*~

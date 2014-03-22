@@ -15,11 +15,12 @@
 #define LT_BACKTRACEDEPTH	12
 
 struct latency_record {
-	unsigned long backtrace[LT_BACKTRACEDEPTH];
-	unsigned int count;
-	unsigned long time;
-	unsigned long max;
+	unsigned long	backtrace[LT_BACKTRACEDEPTH];
+	unsigned int	count;
+	unsigned long	time;
+	unsigned long	max;
 };
+
 
 struct task_struct;
 

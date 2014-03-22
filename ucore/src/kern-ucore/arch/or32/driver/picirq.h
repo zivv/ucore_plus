@@ -10,3 +10,4 @@ void pic_enable(unsigned int irq);
 #define IRQ_OFFSET     32
 
 #endif /* !__KERN_DRIVER_PICIRQ_H__ */
+

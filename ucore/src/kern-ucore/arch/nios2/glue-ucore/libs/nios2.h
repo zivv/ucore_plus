@@ -37,8 +37,9 @@
  */
 
 #ifdef __cplusplus
-extern "C" {
-#endif				/* __cplusplus */
+extern "C"
+{
+#endif /* __cplusplus */
 
 /*
  * Macros for accessing selected processor registers
@@ -63,7 +64,7 @@ extern "C" {
     do { __asm ("mov %0, gp" : "=r" (gp) ); } while (0)
 #define NIOS2_WRITE_GP(value) \
     do { __asm volatile ("mov gp, %z0" : : "rM" (value)); } while (0)
-
+    
 #define NIOS2_READ_R2(r2) \
     do { __asm ("mov %0, r2" : "=r" (r2) ); } while (0)
 
@@ -79,6 +80,7 @@ extern "C" {
     do { __asm volatile ("mov r8, %z0" : : "rM" (value)); } while (0)
 #define NIOS2_WRITE_R9(value) \
     do { __asm volatile ("mov r9, %z0" : : "rM" (value)); } while (0)
+
 
 /*
  * Macros for useful processor instructions
@@ -118,6 +120,7 @@ extern "C" {
 #define NIOS2_READ_CPUID(dest) \
     do { dest = __builtin_rdctl(5); } while (0)
 
+
 /*
  * Macros for accessing extra exception registers. These
  * are always enabled wit the MPU or MMU, and optionally
@@ -128,6 +131,7 @@ extern "C" {
 
 #define NIOS2_READ_BADADDR(dest) \
     do { dest = __builtin_rdctl(12); } while (0)
+
 
 /*
  * Macros for accessing control registers for MMU operation.
@@ -150,9 +154,9 @@ extern "C" {
 #define CTL_BADADDR   12
 #define CTL_CONFIG    13
 #define CTL_MPUBASE   14
-#define CTL_MPUACC    15
+#define CTL_MPUACC    15 
 #define CTL_SIM    6
-
+ 
 #define NIOS2_READ_PTEADDR(dest) \
     do { dest = __builtin_rdctl(8); } while (0)
 
@@ -170,6 +174,8 @@ extern "C" {
 
 #define NIOS2_WRITE_TLBMISC(src) \
     do { __builtin_wrctl(10, src); } while (0)
+        
+
 
 /*
  * Macros for accessing control registers for MPU
@@ -199,6 +205,7 @@ extern "C" {
 
 #define NIOS2_READ_MPUACC(dest) \
     do { dest = __builtin_rdctl(15); } while (0)
+
 
 /*
  * Nios II control registers that are always present
@@ -287,7 +294,9 @@ extern "C" {
  */
 #define NIOS2_NIRQ 32
 
+
 #ifdef __cplusplus
 }
-#endif				/* __cplusplus */
-#endif				/* __NIOS2_H__ */
+#endif /* __cplusplus */
+
+#endif /* __NIOS2_H__ */

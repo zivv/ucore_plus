@@ -28,23 +28,25 @@
 #define to_sysdev(k) container_of(k, struct sys_device, kobj)
 #define to_sysdev_attr(a) container_of(a, struct sysdev_attribute, attr)
 
+
 static ssize_t
-sysdev_show(struct kobject *kobj, struct attribute *attr, char *buffer)
+sysdev_show(struct kobject * kobj, struct attribute * attr, char * buffer)
 {
-	struct sys_device *sysdev = to_sysdev(kobj);
-	struct sysdev_attribute *sysdev_attr = to_sysdev_attr(attr);
+	struct sys_device * sysdev = to_sysdev(kobj);
+	struct sysdev_attribute * sysdev_attr = to_sysdev_attr(attr);
 
 	if (sysdev_attr->show)
 		return sysdev_attr->show(sysdev, sysdev_attr, buffer);
 	return -EIO;
 }
 
+
 static ssize_t
-sysdev_store(struct kobject *kobj, struct attribute *attr,
-	     const char *buffer, size_t count)
+sysdev_store(struct kobject * kobj, struct attribute * attr,
+	     const char * buffer, size_t count)
 {
-	struct sys_device *sysdev = to_sysdev(kobj);
-	struct sysdev_attribute *sysdev_attr = to_sysdev_attr(attr);
+	struct sys_device * sysdev = to_sysdev(kobj);
+	struct sysdev_attribute * sysdev_attr = to_sysdev_attr(attr);
 
 	if (sysdev_attr->store)
 		return sysdev_attr->store(sysdev, sysdev_attr, buffer, count);
@@ -52,20 +54,22 @@ sysdev_store(struct kobject *kobj, struct attribute *attr,
 }
 
 static struct sysfs_ops sysfs_ops = {
-	.show = sysdev_show,
-	.store = sysdev_store,
+	.show	= sysdev_show,
+	.store	= sysdev_store,
 };
 
 static struct kobj_type ktype_sysdev = {
-	.sysfs_ops = &sysfs_ops,
+	.sysfs_ops	= &sysfs_ops,
 };
 
-int sysdev_create_file(struct sys_device *s, struct sysdev_attribute *a)
+
+int sysdev_create_file(struct sys_device * s, struct sysdev_attribute * a)
 {
 	return sysfs_create_file(&s->kobj, &a->attr);
 }
 
-void sysdev_remove_file(struct sys_device *s, struct sysdev_attribute *a)
+
+void sysdev_remove_file(struct sys_device * s, struct sysdev_attribute * a)
 {
 	sysfs_remove_file(&s->kobj, &a->attr);
 }
@@ -80,7 +84,7 @@ EXPORT_SYMBOL_GPL(sysdev_remove_file);
 static ssize_t sysdev_class_show(struct kobject *kobj, struct attribute *attr,
 				 char *buffer)
 {
-	struct sysdev_class *class = to_sysdev_class(kobj);
+	struct sysdev_class * class = to_sysdev_class(kobj);
 	struct sysdev_class_attribute *class_attr = to_sysdev_class_attr(attr);
 
 	if (class_attr->show)
@@ -91,8 +95,8 @@ static ssize_t sysdev_class_show(struct kobject *kobj, struct attribute *attr,
 static ssize_t sysdev_class_store(struct kobject *kobj, struct attribute *attr,
 				  const char *buffer, size_t count)
 {
-	struct sysdev_class *class = to_sysdev_class(kobj);
-	struct sysdev_class_attribute *class_attr = to_sysdev_class_attr(attr);
+	struct sysdev_class * class = to_sysdev_class(kobj);
+	struct sysdev_class_attribute * class_attr = to_sysdev_class_attr(attr);
 
 	if (class_attr->store)
 		return class_attr->store(class, buffer, count);
@@ -100,12 +104,12 @@ static ssize_t sysdev_class_store(struct kobject *kobj, struct attribute *attr,
 }
 
 static struct sysfs_ops sysfs_class_ops = {
-	.show = sysdev_class_show,
-	.store = sysdev_class_store,
+	.show	= sysdev_class_show,
+	.store	= sysdev_class_store,
 };
 
 static struct kobj_type ktype_sysdev_class = {
-	.sysfs_ops = &sysfs_class_ops,
+	.sysfs_ops	= &sysfs_class_ops,
 };
 
 int sysdev_class_create_file(struct sysdev_class *c,
@@ -113,7 +117,6 @@ int sysdev_class_create_file(struct sysdev_class *c,
 {
 	return sysfs_create_file(&c->kset.kobj, &a->attr);
 }
-
 EXPORT_SYMBOL_GPL(sysdev_class_create_file);
 
 void sysdev_class_remove_file(struct sysdev_class *c,
@@ -121,12 +124,11 @@ void sysdev_class_remove_file(struct sysdev_class *c,
 {
 	sysfs_remove_file(&c->kset.kobj, &a->attr);
 }
-
 EXPORT_SYMBOL_GPL(sysdev_class_remove_file);
 
 static struct kset *system_kset;
 
-int sysdev_class_register(struct sysdev_class *cls)
+int sysdev_class_register(struct sysdev_class * cls)
 {
 	pr_debug("Registering sysdev class '%s'\n", cls->name);
 
@@ -139,7 +141,7 @@ int sysdev_class_register(struct sysdev_class *cls)
 	return kset_register(&cls->kset);
 }
 
-void sysdev_class_unregister(struct sysdev_class *cls)
+void sysdev_class_unregister(struct sysdev_class * cls)
 {
 	pr_debug("Unregistering sysdev class '%s'\n",
 		 kobject_name(&cls->kset.kobj));
@@ -167,15 +169,15 @@ int sysdev_driver_register(struct sysdev_class *cls, struct sysdev_driver *drv)
 
 	if (!cls) {
 		WARN(1, KERN_WARNING "sysdev: invalid class passed to "
-		     "sysdev_driver_register!\n");
+			"sysdev_driver_register!\n");
 		return -EINVAL;
 	}
 
 	/* Check whether this driver has already been added to a class. */
 	if (drv->entry.next && !list_empty(&drv->entry))
 		WARN(1, KERN_WARNING "sysdev: class %s: driver (%p) has already"
-		     " been registered to a class, something is wrong, but "
-		     "will forge on!\n", cls->name, drv);
+			" been registered to a class, something is wrong, but "
+			"will forge on!\n", cls->name, drv);
 
 	mutex_lock(&sysdev_drivers_lock);
 	if (cls && kset_get(&cls->kset)) {
@@ -185,7 +187,7 @@ int sysdev_driver_register(struct sysdev_class *cls, struct sysdev_driver *drv)
 		if (drv->add) {
 			struct sys_device *dev;
 			list_for_each_entry(dev, &cls->kset.list, kobj.entry)
-			    drv->add(dev);
+				drv->add(dev);
 		}
 	} else {
 		err = -EINVAL;
@@ -195,13 +197,14 @@ int sysdev_driver_register(struct sysdev_class *cls, struct sysdev_driver *drv)
 	return err;
 }
 
+
 /**
  *	sysdev_driver_unregister - Remove an auxillary driver.
  *	@cls:	Class driver belongs to.
  *	@drv:	Driver.
  */
-void sysdev_driver_unregister(struct sysdev_class *cls,
-			      struct sysdev_driver *drv)
+void sysdev_driver_unregister(struct sysdev_class * cls,
+			      struct sysdev_driver * drv)
 {
 	mutex_lock(&sysdev_drivers_lock);
 	list_del_init(&drv->entry);
@@ -209,7 +212,7 @@ void sysdev_driver_unregister(struct sysdev_class *cls,
 		if (drv->remove) {
 			struct sys_device *dev;
 			list_for_each_entry(dev, &cls->kset.list, kobj.entry)
-			    drv->remove(dev);
+				drv->remove(dev);
 		}
 		kset_put(&cls->kset);
 	}
@@ -219,15 +222,17 @@ void sysdev_driver_unregister(struct sysdev_class *cls,
 EXPORT_SYMBOL_GPL(sysdev_driver_register);
 EXPORT_SYMBOL_GPL(sysdev_driver_unregister);
 
+
+
 /**
  *	sysdev_register - add a system device to the tree
  *	@sysdev:	device in question
  *
  */
-int sysdev_register(struct sys_device *sysdev)
+int sysdev_register(struct sys_device * sysdev)
 {
 	int error;
-	struct sysdev_class *cls = sysdev->cls;
+	struct sysdev_class * cls = sysdev->cls;
 
 	if (!cls)
 		return -EINVAL;
@@ -247,7 +252,7 @@ int sysdev_register(struct sys_device *sysdev)
 				     sysdev->id);
 
 	if (!error) {
-		struct sysdev_driver *drv;
+		struct sysdev_driver * drv;
 
 		pr_debug("Registering sys device '%s'\n",
 			 kobject_name(&sysdev->kobj));
@@ -269,9 +274,9 @@ int sysdev_register(struct sys_device *sysdev)
 	return error;
 }
 
-void sysdev_unregister(struct sys_device *sysdev)
+void sysdev_unregister(struct sys_device * sysdev)
 {
-	struct sysdev_driver *drv;
+	struct sysdev_driver * drv;
 
 	mutex_lock(&sysdev_drivers_lock);
 	list_for_each_entry(drv, &sysdev->cls->drivers, entry) {
@@ -282,6 +287,8 @@ void sysdev_unregister(struct sys_device *sysdev)
 
 	kobject_put(&sysdev->kobj);
 }
+
+
 
 /**
  *	sysdev_shutdown - Shut down all system devices.
@@ -298,19 +305,19 @@ void sysdev_unregister(struct sys_device *sysdev)
  */
 void sysdev_shutdown(void)
 {
-	struct sysdev_class *cls;
+	struct sysdev_class * cls;
 
 	pr_debug("Shutting Down System Devices\n");
 
 	mutex_lock(&sysdev_drivers_lock);
 	list_for_each_entry_reverse(cls, &system_kset->list, kset.kobj.entry) {
-		struct sys_device *sysdev;
+		struct sys_device * sysdev;
 
 		pr_debug("Shutting down type '%s':\n",
 			 kobject_name(&cls->kset.kobj));
 
 		list_for_each_entry(sysdev, &cls->kset.list, kobj.entry) {
-			struct sysdev_driver *drv;
+			struct sysdev_driver * drv;
 			pr_debug(" %s\n", kobject_name(&sysdev->kobj));
 
 			/* Call auxillary drivers first */
@@ -357,7 +364,7 @@ static void __sysdev_resume(struct sys_device *dev)
  */
 int sysdev_suspend(pm_message_t state)
 {
-	struct sysdev_class *cls;
+	struct sysdev_class * cls;
 	struct sys_device *sysdev, *err_dev;
 	struct sysdev_driver *drv, *err_drv;
 	int ret;
@@ -393,12 +400,12 @@ int sysdev_suspend(pm_message_t state)
 cls_driver:
 	drv = NULL;
 	printk(KERN_ERR "Class suspend failed for %s\n",
-	       kobject_name(&sysdev->kobj));
+		kobject_name(&sysdev->kobj));
 
 aux_driver:
 	if (drv)
 		printk(KERN_ERR "Class driver suspend failed for %s\n",
-		       kobject_name(&sysdev->kobj));
+				kobject_name(&sysdev->kobj));
 	list_for_each_entry(err_drv, &cls->drivers, entry) {
 		if (err_drv == drv)
 			break;
@@ -423,7 +430,6 @@ aux_driver:
 	}
 	return ret;
 }
-
 EXPORT_SYMBOL_GPL(sysdev_suspend);
 
 /**
@@ -436,12 +442,12 @@ EXPORT_SYMBOL_GPL(sysdev_suspend);
  */
 int sysdev_resume(void)
 {
-	struct sysdev_class *cls;
+	struct sysdev_class * cls;
 
 	pr_debug("Resuming System Devices\n");
 
 	list_for_each_entry(cls, &system_kset->list, kset.kobj.entry) {
-		struct sys_device *sysdev;
+		struct sys_device * sysdev;
 
 		pr_debug("Resuming type '%s':\n",
 			 kobject_name(&cls->kset.kobj));
@@ -454,7 +460,6 @@ int sysdev_resume(void)
 	}
 	return 0;
 }
-
 EXPORT_SYMBOL_GPL(sysdev_resume);
 
 int __init system_bus_init(void)
@@ -470,8 +475,8 @@ EXPORT_SYMBOL_GPL(sysdev_unregister);
 
 #define to_ext_attr(x) container_of(x, struct sysdev_ext_attribute, attr)
 
-ssize_t sysdev_store_ulong(struct sys_device * sysdev,
-			   struct sysdev_attribute * attr,
+ssize_t sysdev_store_ulong(struct sys_device *sysdev,
+			   struct sysdev_attribute *attr,
 			   const char *buf, size_t size)
 {
 	struct sysdev_ext_attribute *ea = to_ext_attr(attr);
@@ -483,21 +488,20 @@ ssize_t sysdev_store_ulong(struct sys_device * sysdev,
 	/* Always return full write size even if we didn't consume all */
 	return size;
 }
-
 EXPORT_SYMBOL_GPL(sysdev_store_ulong);
 
-ssize_t sysdev_show_ulong(struct sys_device * sysdev,
-			  struct sysdev_attribute * attr, char *buf)
+ssize_t sysdev_show_ulong(struct sys_device *sysdev,
+			  struct sysdev_attribute *attr,
+			  char *buf)
 {
 	struct sysdev_ext_attribute *ea = to_ext_attr(attr);
 	return snprintf(buf, PAGE_SIZE, "%lx\n", *(unsigned long *)(ea->var));
 }
-
 EXPORT_SYMBOL_GPL(sysdev_show_ulong);
 
 ssize_t sysdev_store_int(struct sys_device *sysdev,
-			 struct sysdev_attribute *attr,
-			 const char *buf, size_t size)
+			   struct sysdev_attribute *attr,
+			   const char *buf, size_t size)
 {
 	struct sysdev_ext_attribute *ea = to_ext_attr(attr);
 	char *end;
@@ -508,14 +512,14 @@ ssize_t sysdev_store_int(struct sys_device *sysdev,
 	/* Always return full write size even if we didn't consume all */
 	return size;
 }
-
 EXPORT_SYMBOL_GPL(sysdev_store_int);
 
-ssize_t sysdev_show_int(struct sys_device * sysdev,
-			struct sysdev_attribute * attr, char *buf)
+ssize_t sysdev_show_int(struct sys_device *sysdev,
+			  struct sysdev_attribute *attr,
+			  char *buf)
 {
 	struct sysdev_ext_attribute *ea = to_ext_attr(attr);
 	return snprintf(buf, PAGE_SIZE, "%d\n", *(int *)(ea->var));
 }
-
 EXPORT_SYMBOL_GPL(sysdev_show_int);
+

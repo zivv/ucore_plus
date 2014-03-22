@@ -9,34 +9,25 @@
 #if 1
 /* copy from Linux 2.6 Chen Yuheng 2012/3/20*/
 typedef struct {
-	volatile int counter;
+    volatile int counter;
 } ucore_atomic_t;
 
-#ifndef __NO_UCORE_TYPE__
+#ifndef __NO_UCORE_TYPE__ 
 typedef ucore_atomic_t atomic_t;
 #endif
 #endif
 
-static inline int atomic_read(const atomic_t * v)
-    __attribute__ ((always_inline));
-static inline void atomic_set(atomic_t * v, int i)
-    __attribute__ ((always_inline));
-static inline void atomic_add(atomic_t * v, int i)
-    __attribute__ ((always_inline));
-static inline void atomic_sub(atomic_t * v, int i)
-    __attribute__ ((always_inline));
-static inline bool atomic_sub_test_zero(atomic_t * v, int i)
-    __attribute__ ((always_inline));
-static inline void atomic_inc(atomic_t * v) __attribute__ ((always_inline));
-static inline void atomic_dec(atomic_t * v) __attribute__ ((always_inline));
-static inline bool atomic_inc_test_zero(atomic_t * v)
-    __attribute__ ((always_inline));
-static inline bool atomic_dec_test_zero(atomic_t * v)
-    __attribute__ ((always_inline));
-static inline int atomic_add_return(atomic_t * v, int i)
-    __attribute__ ((always_inline));
-static inline int atomic_sub_return(atomic_t * v, int i)
-    __attribute__ ((always_inline));
+static inline int atomic_read(const atomic_t *v) __attribute__((always_inline));
+static inline void atomic_set(atomic_t *v, int i) __attribute__((always_inline));
+static inline void atomic_add(atomic_t *v, int i) __attribute__((always_inline));
+static inline void atomic_sub(atomic_t *v, int i) __attribute__((always_inline));
+static inline bool atomic_sub_test_zero(atomic_t *v, int i) __attribute__((always_inline));
+static inline void atomic_inc(atomic_t *v) __attribute__((always_inline));
+static inline void atomic_dec(atomic_t *v) __attribute__((always_inline));
+static inline bool atomic_inc_test_zero(atomic_t *v) __attribute__((always_inline));
+static inline bool atomic_dec_test_zero(atomic_t *v) __attribute__((always_inline));
+static inline int atomic_add_return(atomic_t *v, int i) __attribute__((always_inline));
+static inline int atomic_sub_return(atomic_t *v, int i) __attribute__((always_inline));
 
 /* *
  * atomic_read - read atomic variable
@@ -44,8 +35,8 @@ static inline int atomic_sub_return(atomic_t * v, int i)
  *
  * Atomically reads the value of @v.
  * */
-static inline int atomic_read(const atomic_t * v)
-{
+static inline int
+atomic_read(const atomic_t *v) {
 	return v->counter;
 }
 
@@ -56,8 +47,8 @@ static inline int atomic_read(const atomic_t * v)
  *
  * Atomically sets the value of @v to @i.
  * */
-static inline void atomic_set(atomic_t * v, int i)
-{
+static inline void
+atomic_set(atomic_t *v, int i) {
 	v->counter = i;
 }
 
@@ -68,9 +59,9 @@ static inline void atomic_set(atomic_t * v, int i)
  *
  * Atomically adds @i to @v.
  * */
-static inline void atomic_add(atomic_t * v, int i)
-{
-	v->counter += i;
+static inline void
+atomic_add(atomic_t *v, int i) {
+  v->counter += i;
 	//return result;  
 }
 
@@ -81,9 +72,9 @@ static inline void atomic_add(atomic_t * v, int i)
  *
  * Atomically subtracts @i from @v.
  * */
-static inline void atomic_sub(atomic_t * v, int i)
-{
-	v->counter -= i;
+static inline void
+atomic_sub(atomic_t *v, int i) {
+  v->counter -= i;
 }
 
 /* *
@@ -94,16 +85,16 @@ static inline void atomic_sub(atomic_t * v, int i)
  * Atomically subtracts @i from @v and
  * returns true if the result is zero, or false for all other cases.
  * */
-static inline bool atomic_sub_test_zero(atomic_t * v, int i)
-{
+static inline bool
+atomic_sub_test_zero(atomic_t *v, int i) {
 	unsigned char c = 0;
 	bool intr_flag;
-	local_intr_save(intr_flag);
+	local_intr_save (intr_flag);
 	v->counter -= i;
 	if (v->counter == 0)
 		c = 1;
-	local_intr_restore(intr_flag);
-	return c != 0;
+	local_intr_restore (intr_flag);
+    return c != 0;
 }
 
 /* *
@@ -112,9 +103,9 @@ static inline bool atomic_sub_test_zero(atomic_t * v, int i)
  *
  * Atomically increments @v by 1.
  * */
-static inline void atomic_inc(atomic_t * v)
-{
-	atomic_add(v, 1);
+static inline void
+atomic_inc(atomic_t *v) {
+  atomic_add(v, 1);
 }
 
 /* *
@@ -123,9 +114,9 @@ static inline void atomic_inc(atomic_t * v)
  *
  * Atomically decrements @v by 1.
  * */
-static inline void atomic_dec(atomic_t * v)
-{
-	atomic_sub(v, 1);
+static inline void
+atomic_dec(atomic_t *v) {
+  atomic_sub(v, 1);
 }
 
 /* *
@@ -135,15 +126,15 @@ static inline void atomic_dec(atomic_t * v)
  * Atomically increments @v by 1 and
  * returns true if the result is zero, or false for all other cases.
  * */
-static inline bool atomic_inc_test_zero(atomic_t * v)
-{
+static inline bool
+atomic_inc_test_zero(atomic_t *v) {
 	unsigned char c = 0;
 	bool intr_flag;
-	local_intr_save(intr_flag);
-	atomic_inc(v);
+	local_intr_save (intr_flag);
+  atomic_inc(v);
 	if (v->counter == 0)
 		c = 1;
-	local_intr_restore(intr_flag);
+	local_intr_restore (intr_flag);
 	return c != 0;
 }
 
@@ -154,15 +145,15 @@ static inline bool atomic_inc_test_zero(atomic_t * v)
  * Atomically decrements @v by 1 and
  * returns true if the result is 0, or false for all other cases.
  * */
-static inline bool atomic_dec_test_zero(atomic_t * v)
-{
+static inline bool
+atomic_dec_test_zero(atomic_t *v) {
 	unsigned char c = 0;
 	bool intr_flag;
-	local_intr_save(intr_flag);
-	atomic_dec(v);
+	local_intr_save (intr_flag);
+  atomic_dec(v);
 	if (v->counter == 0)
 		c = 1;
-	local_intr_restore(intr_flag);
+	local_intr_restore (intr_flag);
 	return c != 0;
 }
 
@@ -174,12 +165,12 @@ static inline bool atomic_dec_test_zero(atomic_t * v)
  * Atomically adds @i to @v and returns @i + @v
  * Requires Modern 486+ processor
  * */
-static inline int atomic_add_return(atomic_t * v, int i)
-{
+static inline int
+atomic_add_return(atomic_t *v, int i) {
 	bool intr_flag;
-	local_intr_save(intr_flag);
+	local_intr_save (intr_flag);
 	v->counter += i;
-	local_intr_restore(intr_flag);
+	local_intr_restore (intr_flag);
 	return v->counter;
 }
 
@@ -190,29 +181,22 @@ static inline int atomic_add_return(atomic_t * v, int i)
  *
  * Atomically subtracts @i from @v and returns @v - @i
  * */
-static inline int atomic_sub_return(atomic_t * v, int i)
-{
+static inline int
+atomic_sub_return(atomic_t *v, int i) {
 	bool intr_flag;
-	local_intr_save(intr_flag);
+	local_intr_save (intr_flag);
 	v->counter -= i;
-	local_intr_restore(intr_flag);
+	local_intr_restore (intr_flag);
 	return v->counter;
 }
 
-static inline void set_bit(int nr, volatile uint32_t * addr)
-    __attribute__ ((always_inline));
-static inline void clear_bit(int nr, volatile uint32_t * addr)
-    __attribute__ ((always_inline));
-static inline void change_bit(int nr, volatile uint32_t * addr)
-    __attribute__ ((always_inline));
-static inline bool test_and_set_bit(int nr, volatile uint32_t * addr)
-    __attribute__ ((always_inline));
-static inline bool test_and_clear_bit(int nr, volatile uint32_t * addr)
-    __attribute__ ((always_inline));
-static inline bool test_and_change_bit(int nr, volatile uint32_t * addr)
-    __attribute__ ((always_inline));
-static inline bool test_bit(int nr, volatile uint32_t * addr)
-    __attribute__ ((always_inline));
+static inline void set_bit(int nr, volatile uint32_t *addr) __attribute__((always_inline));
+static inline void clear_bit(int nr, volatile uint32_t *addr) __attribute__((always_inline));
+static inline void change_bit(int nr, volatile uint32_t *addr) __attribute__((always_inline));
+static inline bool test_and_set_bit(int nr, volatile uint32_t *addr) __attribute__((always_inline));
+static inline bool test_and_clear_bit(int nr, volatile uint32_t *addr) __attribute__((always_inline));
+static inline bool test_and_change_bit(int nr, volatile uint32_t *addr) __attribute__((always_inline));
+static inline bool test_bit(int nr, volatile uint32_t *addr) __attribute__((always_inline));
 
 /* *
  * set_bit - Atomically set a bit in memory
@@ -222,12 +206,12 @@ static inline bool test_bit(int nr, volatile uint32_t * addr)
  * Note that @nr may be almost arbitrarily large; this function is not
  * restricted to acting on a single-word quantity.
  * */
-static inline void set_bit(int nr, volatile uint32_t * addr)
-{
+static inline void
+set_bit(int nr, volatile uint32_t *addr) {
 	bool intr_flag;
-	local_intr_save(intr_flag);
+	local_intr_save (intr_flag);
 	*addr |= (1 << nr);
-	local_intr_restore(intr_flag);
+	local_intr_restore (intr_flag);
 }
 
 /* *
@@ -235,12 +219,12 @@ static inline void set_bit(int nr, volatile uint32_t * addr)
  * @nr:     the bit to clear
  * @addr:   the address to start counting from
  * */
-static inline void clear_bit(int nr, volatile uint32_t * addr)
-{
+static inline void
+clear_bit(int nr, volatile uint32_t *addr) {
 	bool intr_flag;
-	local_intr_save(intr_flag);
+	local_intr_save (intr_flag);
 	*addr &= ~(1 << nr);
-	local_intr_restore(intr_flag);
+	local_intr_restore (intr_flag);
 }
 
 /* *
@@ -248,15 +232,15 @@ static inline void clear_bit(int nr, volatile uint32_t * addr)
  * @nr:     the bit to change
  * @addr:   the address to start counting from
  * */
-static inline void change_bit(int nr, volatile uint32_t * addr)
-{
+static inline void
+change_bit(int nr, volatile uint32_t *addr) {
 	bool intr_flag;
-	local_intr_save(intr_flag);
+	local_intr_save (intr_flag);
 	//asm volatile ("l.xor %0, %0, %1" :"=m" (*(volatile long *)addr) : "Ir" (1 << nr));
 //#error Fill HERE
-	//asm volatile ("ldr r0, [%0]");
-	*(volatile long *)addr ^= (1 << nr);
-	local_intr_restore(intr_flag);
+  //asm volatile ("ldr r0, [%0]");
+  *(volatile long*)addr ^= (1<<nr);
+	local_intr_restore (intr_flag);
 }
 
 /* *
@@ -264,15 +248,15 @@ static inline void change_bit(int nr, volatile uint32_t * addr)
  * @nr:     the bit to set
  * @addr:   the address to count from
  * */
-static inline bool test_and_set_bit(int nr, volatile uint32_t * addr)
-{
+static inline bool
+test_and_set_bit(int nr, volatile uint32_t *addr) {
 	unsigned char c = 0;
 	bool intr_flag;
-	local_intr_save(intr_flag);
+	local_intr_save (intr_flag);
 	if (*addr & (1 << nr))
 		c = 1;
 	*addr |= (1 << nr);
-	local_intr_restore(intr_flag);
+	local_intr_restore (intr_flag);
 	return c != 0;
 }
 
@@ -281,15 +265,15 @@ static inline bool test_and_set_bit(int nr, volatile uint32_t * addr)
  * @nr:     the bit to clear
  * @addr:   the address to count from
  * */
-static inline bool test_and_clear_bit(int nr, volatile uint32_t * addr)
-{
+static inline bool
+test_and_clear_bit(int nr, volatile uint32_t *addr) {
 	unsigned char c = 0;
 	bool intr_flag;
-	local_intr_save(intr_flag);
+	local_intr_save (intr_flag);
 	if (*addr & (1 << nr))
 		c = 1;
 	*addr &= ~(1 << nr);
-	local_intr_restore(intr_flag);
+	local_intr_restore (intr_flag);
 	return 0;
 }
 
@@ -298,17 +282,17 @@ static inline bool test_and_clear_bit(int nr, volatile uint32_t * addr)
  * @nr:     the bit to change
  * @addr:   the address to count from
  * */
-static inline bool test_and_change_bit(int nr, volatile uint32_t * addr)
-{
+static inline bool
+test_and_change_bit(int nr, volatile uint32_t *addr) {
 	unsigned char c = 0;
 	bool intr_flag;
-	local_intr_save(intr_flag);
+	local_intr_save (intr_flag);
 	if (*addr & (1 << nr))
 		c = 1;
-//      asm volatile ("l.xor %0, %0, %1" :"=m" (*(volatile long *)addr) : "Ir" (1 << nr));
+//	asm volatile ("l.xor %0, %0, %1" :"=m" (*(volatile long *)addr) : "Ir" (1 << nr));
 //#error Fill HERE
-	*(volatile long *)addr ^= (1 << nr);
-	local_intr_restore(intr_flag);
+  *(volatile long*)addr ^= (1<<nr); 
+	local_intr_restore (intr_flag);
 	return 0;
 }
 
@@ -317,15 +301,16 @@ static inline bool test_and_change_bit(int nr, volatile uint32_t * addr)
  * @nr:     the bit to test
  * @addr:   the address to count from
  * */
-static inline bool test_bit(int nr, volatile uint32_t * addr)
-{
+static inline bool
+test_bit(int nr, volatile uint32_t *addr) {
 	unsigned char c = 0;
 	bool intr_flag;
-	local_intr_save(intr_flag);
+	local_intr_save (intr_flag);
 	if (*addr & (1 << nr))
 		c = 1;
-	local_intr_restore(intr_flag);
+	local_intr_restore (intr_flag);
 	return c != 0;
 }
 
 #endif /* !__ARCH_TEMPLATE_INCLUDE_ATOMIC_H */
+

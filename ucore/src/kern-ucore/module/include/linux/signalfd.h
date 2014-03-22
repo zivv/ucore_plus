@@ -46,6 +46,7 @@ struct signalfd_siginfo {
 	__u8 __pad[48];
 };
 
+
 #ifdef __KERNEL__
 
 #ifdef CONFIG_SIGNALFD
@@ -61,12 +62,11 @@ static inline void signalfd_notify(struct task_struct *tsk, int sig)
 
 #else /* CONFIG_SIGNALFD */
 
-static inline void signalfd_notify(struct task_struct *tsk, int sig)
-{
-}
+static inline void signalfd_notify(struct task_struct *tsk, int sig) { }
 
 #endif /* CONFIG_SIGNALFD */
 
 #endif /* __KERNEL__ */
 
 #endif /* _LINUX_SIGNALFD_H */
+

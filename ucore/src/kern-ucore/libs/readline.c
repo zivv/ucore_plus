@@ -1,10 +1,11 @@
+#include <glue_kio.h>
 #include <kio.h>
 
 #define BUFSIZE 1024
 static char buf[BUFSIZE];
 
-#define getchar  cons_getc
-#define cputchar cons_putc
+#define getchar  kcons_getc
+#define cputchar kcons_putc
 
 /* *
  * readline - get a line from stdin
@@ -24,26 +25,30 @@ static char buf[BUFSIZE];
  * are happened, NULL is returned. The return value is a global variable,
  * thus it should be copied before it is used.
  * */
-char *readline(const char *prompt)
-{
-	if (prompt != NULL) {
-		kprintf("%s", prompt);
-	}
-	int i = 0, c;
-	while (1) {
-		c = getchar();
-		if (c < 0) {
-			return NULL;
-		} else if (c >= ' ' && i < BUFSIZE - 1) {
-			cputchar(c);
-			buf[i++] = c;
-		} else if (c == '\b' && i > 0) {
-			cputchar(c);
-			i--;
-		} else if (c == '\n' || c == '\r') {
-			cputchar(c);
-			buf[i] = '\0';
-			return buf;
-		}
-	}
+char *
+readline(const char *prompt) {
+    if (prompt != NULL) {
+        kprintf("%s", prompt);
+    }
+    int i = 0, c;
+    while (1) {
+        c = getchar();
+        if (c < 0) {
+            return NULL;
+        }
+        else if (c >= ' ' && i < BUFSIZE - 1) {
+            cputchar(c);
+            buf[i ++] = c;
+        }
+        else if (c == '\b' && i > 0) {
+            cputchar(c);
+            i --;
+        }
+        else if (c == '\n' || c == '\r') {
+            cputchar(c);
+            buf[i] = '\0';
+            return buf;
+        }
+    }
 }
+

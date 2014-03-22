@@ -29,6 +29,7 @@
 #define TWL_COMMON_REGULATOR_VPLL1	(1 << 4)
 #define TWL_COMMON_REGULATOR_VPLL2	(1 << 5)
 
+
 struct twl4030_platform_data;
 struct twl6040_platform_data;
 
@@ -49,8 +50,8 @@ static inline void omap3_pmic_init(const char *pmic_type,
 }
 
 void omap4_pmic_init(const char *pmic_type,
-		     struct twl4030_platform_data *pmic_data,
-		     struct twl6040_platform_data *audio_data, int twl6040_irq);
+		    struct twl4030_platform_data *pmic_data,
+		    struct twl6040_platform_data *audio_data, int twl6040_irq);
 
 void omap3_pmic_get_config(struct twl4030_platform_data *pmic_data,
 			   u32 pdata_flags, u32 regulators_flags);

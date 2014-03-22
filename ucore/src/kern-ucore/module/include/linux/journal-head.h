@@ -10,8 +10,9 @@
 #ifndef JOURNAL_HEAD_H_INCLUDED
 #define JOURNAL_HEAD_H_INCLUDED
 
-typedef unsigned int tid_t;	/* Unique transaction ID */
-typedef struct transaction_s transaction_t;	/* Compound transaction type */
+typedef unsigned int		tid_t;		/* Unique transaction ID */
+typedef struct transaction_s	transaction_t;	/* Compound transaction type */
+
 
 struct buffer_head;
 
@@ -96,4 +97,4 @@ struct journal_head {
 	struct jbd2_buffer_trigger_type *b_frozen_triggers;
 };
 
-#endif /* JOURNAL_HEAD_H_INCLUDED */
+#endif		/* JOURNAL_HEAD_H_INCLUDED */

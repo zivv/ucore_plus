@@ -51,7 +51,6 @@ static inline int nfsd_idmap_init(void)
 {
 	return 0;
 }
-
 static inline void nfsd_idmap_shutdown(void)
 {
 }

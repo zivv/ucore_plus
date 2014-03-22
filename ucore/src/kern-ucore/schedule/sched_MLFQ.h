@@ -6,3 +6,4 @@
 extern struct sched_class MLFQ_sched_class;
 
 #endif /* !__KERN_SCHEDULE_SCHED_MLFQ_H__ */
+

@@ -1,7 +1,8 @@
 #ifndef _ASM_ARM_MODULE_H
 #define _ASM_ARM_MODULE_H
 
-struct mod_arch_specific {
+struct mod_arch_specific
+{
 	int foo;
 };
 

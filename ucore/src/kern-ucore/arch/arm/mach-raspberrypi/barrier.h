@@ -9,6 +9,7 @@
 #define dmb() asm volatile \
 ("mcr p15, #0, %[zero], c7, c10, #5" : : [zero] "r" (0) )
 
+
 /*
 * Data synchronisation barrier
 * No instruction after the DSB can run until all instructions before it have
@@ -16,6 +17,7 @@
 */
 #define dsb() asm volatile \
 ("mcr p15, #0, %[zero], c7, c10, #4" : : [zero] "r" (0) )
+
 
 /*
 * Clean and invalidate entire cache

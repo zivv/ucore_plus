@@ -30,7 +30,6 @@ void sdio_claim_host(struct sdio_func *func)
 
 	mmc_claim_host(func->card->host);
 }
-
 EXPORT_SYMBOL_GPL(sdio_claim_host);
 
 /**
@@ -47,7 +46,6 @@ void sdio_release_host(struct sdio_func *func)
 
 	mmc_release_host(func->card->host);
 }
-
 EXPORT_SYMBOL_GPL(sdio_release_host);
 
 /**
@@ -81,8 +79,7 @@ int sdio_enable_func(struct sdio_func *func)
 	timeout = jiffies + msecs_to_jiffies(func->enable_timeout);
 
 	while (1) {
-		ret =
-		    mmc_io_rw_direct(func->card, 0, 0, SDIO_CCCR_IORx, 0, &reg);
+		ret = mmc_io_rw_direct(func->card, 0, 0, SDIO_CCCR_IORx, 0, &reg);
 		if (ret)
 			goto err;
 		if (reg & (1 << func->num))
@@ -100,7 +97,6 @@ err:
 	pr_debug("SDIO: Failed to enable device %s\n", sdio_func_id(func));
 	return ret;
 }
-
 EXPORT_SYMBOL_GPL(sdio_enable_func);
 
 /**
@@ -138,7 +134,6 @@ err:
 	pr_debug("SDIO: Failed to disable device %s\n", sdio_func_id(func));
 	return -EIO;
 }
-
 EXPORT_SYMBOL_GPL(sdio_disable_func);
 
 /**
@@ -173,19 +168,18 @@ int sdio_set_block_size(struct sdio_func *func, unsigned blksz)
 	}
 
 	ret = mmc_io_rw_direct(func->card, 1, 0,
-			       SDIO_FBR_BASE(func->num) + SDIO_FBR_BLKSIZE,
-			       blksz & 0xff, NULL);
+		SDIO_FBR_BASE(func->num) + SDIO_FBR_BLKSIZE,
+		blksz & 0xff, NULL);
 	if (ret)
 		return ret;
 	ret = mmc_io_rw_direct(func->card, 1, 0,
-			       SDIO_FBR_BASE(func->num) + SDIO_FBR_BLKSIZE + 1,
-			       (blksz >> 8) & 0xff, NULL);
+		SDIO_FBR_BASE(func->num) + SDIO_FBR_BLKSIZE + 1,
+		(blksz >> 8) & 0xff, NULL);
 	if (ret)
 		return ret;
 	func->cur_blksize = blksz;
 	return 0;
 }
-
 EXPORT_SYMBOL_GPL(sdio_set_block_size);
 
 /*
@@ -193,10 +187,10 @@ EXPORT_SYMBOL_GPL(sdio_set_block_size);
  */
 static inline unsigned int sdio_max_byte_size(struct sdio_func *func)
 {
-	unsigned mval = min(func->card->host->max_seg_size,
+	unsigned mval =	min(func->card->host->max_seg_size,
 			    func->card->host->max_blk_size);
 	mval = min(mval, func->max_blksize);
-	return min(mval, 512u);	/* maximum size for byte mode */
+	return min(mval, 512u); /* maximum size for byte mode */
 }
 
 /**
@@ -247,7 +241,7 @@ unsigned int sdio_align_size(struct sdio_func *func, unsigned int sz)
 		 * and recheck if the controller still likes it.
 		 */
 		blk_sz = ((sz + func->cur_blksize - 1) /
-			  func->cur_blksize) * func->cur_blksize;
+			func->cur_blksize) * func->cur_blksize;
 		blk_sz = mmc_align_data_size(func->card, blk_sz);
 
 		/*
@@ -262,7 +256,7 @@ unsigned int sdio_align_size(struct sdio_func *func, unsigned int sz)
 		 * pad the remainder properly.
 		 */
 		byte_sz = mmc_align_data_size(func->card,
-					      sz % func->cur_blksize);
+				sz % func->cur_blksize);
 		if (byte_sz <= sdio_max_byte_size(func)) {
 			blk_sz = sz / func->cur_blksize;
 			return blk_sz * func->cur_blksize + byte_sz;
@@ -273,7 +267,7 @@ unsigned int sdio_align_size(struct sdio_func *func, unsigned int sz)
 		 * controller can handle the chunk size;
 		 */
 		chunk_sz = mmc_align_data_size(func->card,
-					       sdio_max_byte_size(func));
+				sdio_max_byte_size(func));
 		if (chunk_sz == sdio_max_byte_size(func)) {
 			/*
 			 * Fix up the size of the remainder (if any)
@@ -281,7 +275,7 @@ unsigned int sdio_align_size(struct sdio_func *func, unsigned int sz)
 			byte_sz = orig_sz % chunk_sz;
 			if (byte_sz) {
 				byte_sz = mmc_align_data_size(func->card,
-							      byte_sz);
+						byte_sz);
 			}
 
 			return (orig_sz / chunk_sz) * chunk_sz + byte_sz;
@@ -294,14 +288,12 @@ unsigned int sdio_align_size(struct sdio_func *func, unsigned int sz)
 	 */
 	return orig_sz;
 }
-
 EXPORT_SYMBOL_GPL(sdio_align_size);
 
 /* Split an arbitrarily sized data transfer into several
  * IO_RW_EXTENDED commands. */
 static int sdio_io_rw_ext_helper(struct sdio_func *func, int write,
-				 unsigned addr, int incr_addr, u8 * buf,
-				 unsigned size)
+	unsigned addr, int incr_addr, u8 *buf, unsigned size)
 {
 	unsigned remainder = size;
 	unsigned max_blocks;
@@ -313,8 +305,7 @@ static int sdio_io_rw_ext_helper(struct sdio_func *func, int write,
 		 * size (we only use a single sg entry) and the maximum for
 		 * IO_RW_EXTENDED of 511 blocks. */
 		max_blocks = min(func->card->host->max_blk_count,
-				 func->card->host->max_seg_size /
-				 func->cur_blksize);
+			func->card->host->max_seg_size / func->cur_blksize);
 		max_blocks = min(max_blocks, 511u);
 
 		while (remainder > func->cur_blksize) {
@@ -326,9 +317,8 @@ static int sdio_io_rw_ext_helper(struct sdio_func *func, int write,
 			size = blocks * func->cur_blksize;
 
 			ret = mmc_io_rw_extended(func->card, write,
-						 func->num, addr, incr_addr,
-						 buf, blocks,
-						 func->cur_blksize);
+				func->num, addr, incr_addr, buf,
+				blocks, func->cur_blksize);
 			if (ret)
 				return ret;
 
@@ -344,7 +334,7 @@ static int sdio_io_rw_ext_helper(struct sdio_func *func, int write,
 		size = min(remainder, sdio_max_byte_size(func));
 
 		ret = mmc_io_rw_extended(func->card, write, func->num, addr,
-					 incr_addr, buf, 1, size);
+			 incr_addr, buf, 1, size);
 		if (ret)
 			return ret;
 
@@ -366,7 +356,7 @@ static int sdio_io_rw_ext_helper(struct sdio_func *func, int write,
  *	function. If there is a problem reading the address, 0xff
  *	is returned and @err_ret will contain the error code.
  */
-u8 sdio_readb(struct sdio_func * func, unsigned int addr, int *err_ret)
+u8 sdio_readb(struct sdio_func *func, unsigned int addr, int *err_ret)
 {
 	int ret;
 	u8 val;
@@ -385,7 +375,6 @@ u8 sdio_readb(struct sdio_func * func, unsigned int addr, int *err_ret)
 
 	return val;
 }
-
 EXPORT_SYMBOL_GPL(sdio_readb);
 
 /**
@@ -400,7 +389,7 @@ EXPORT_SYMBOL_GPL(sdio_readb);
  *	is returned and @err_ret will contain the error code.
  */
 unsigned char sdio_readb_ext(struct sdio_func *func, unsigned int addr,
-			     int *err_ret, unsigned in)
+	int *err_ret, unsigned in)
 {
 	int ret;
 	unsigned char val;
@@ -410,7 +399,7 @@ unsigned char sdio_readb_ext(struct sdio_func *func, unsigned int addr,
 	if (err_ret)
 		*err_ret = 0;
 
-	ret = mmc_io_rw_direct(func->card, 0, func->num, addr, (u8) in, &val);
+	ret = mmc_io_rw_direct(func->card, 0, func->num, addr, (u8)in, &val);
 	if (ret) {
 		if (err_ret)
 			*err_ret = ret;
@@ -419,7 +408,6 @@ unsigned char sdio_readb_ext(struct sdio_func *func, unsigned int addr,
 
 	return val;
 }
-
 EXPORT_SYMBOL_GPL(sdio_readb_ext);
 
 /**
@@ -443,7 +431,6 @@ void sdio_writeb(struct sdio_func *func, u8 b, unsigned int addr, int *err_ret)
 	if (err_ret)
 		*err_ret = ret;
 }
-
 EXPORT_SYMBOL_GPL(sdio_writeb);
 
 /**
@@ -457,11 +444,10 @@ EXPORT_SYMBOL_GPL(sdio_writeb);
  *	value indicates if the transfer succeeded or not.
  */
 int sdio_memcpy_fromio(struct sdio_func *func, void *dst,
-		       unsigned int addr, int count)
+	unsigned int addr, int count)
 {
 	return sdio_io_rw_ext_helper(func, 0, addr, 1, dst, count);
 }
-
 EXPORT_SYMBOL_GPL(sdio_memcpy_fromio);
 
 /**
@@ -475,11 +461,10 @@ EXPORT_SYMBOL_GPL(sdio_memcpy_fromio);
  *	value indicates if the transfer succeeded or not.
  */
 int sdio_memcpy_toio(struct sdio_func *func, unsigned int addr,
-		     void *src, int count)
+	void *src, int count)
 {
 	return sdio_io_rw_ext_helper(func, 1, addr, 1, src, count);
 }
-
 EXPORT_SYMBOL_GPL(sdio_memcpy_toio);
 
 /**
@@ -492,11 +477,11 @@ EXPORT_SYMBOL_GPL(sdio_memcpy_toio);
  *	Reads from the specified FIFO of a given SDIO function. Return
  *	value indicates if the transfer succeeded or not.
  */
-int sdio_readsb(struct sdio_func *func, void *dst, unsigned int addr, int count)
+int sdio_readsb(struct sdio_func *func, void *dst, unsigned int addr,
+	int count)
 {
 	return sdio_io_rw_ext_helper(func, 0, addr, 0, dst, count);
 }
-
 EXPORT_SYMBOL_GPL(sdio_readsb);
 
 /**
@@ -510,11 +495,10 @@ EXPORT_SYMBOL_GPL(sdio_readsb);
  *	value indicates if the transfer succeeded or not.
  */
 int sdio_writesb(struct sdio_func *func, unsigned int addr, void *src,
-		 int count)
+	int count)
 {
 	return sdio_io_rw_ext_helper(func, 1, addr, 0, src, count);
 }
-
 EXPORT_SYMBOL_GPL(sdio_writesb);
 
 /**
@@ -527,7 +511,7 @@ EXPORT_SYMBOL_GPL(sdio_writesb);
  *	function. If there is a problem reading the address, 0xffff
  *	is returned and @err_ret will contain the error code.
  */
-u16 sdio_readw(struct sdio_func * func, unsigned int addr, int *err_ret)
+u16 sdio_readw(struct sdio_func *func, unsigned int addr, int *err_ret)
 {
 	int ret;
 
@@ -541,9 +525,8 @@ u16 sdio_readw(struct sdio_func * func, unsigned int addr, int *err_ret)
 		return 0xFFFF;
 	}
 
-	return le16_to_cpup((__le16 *) func->tmpbuf);
+	return le16_to_cpup((__le16 *)func->tmpbuf);
 }
-
 EXPORT_SYMBOL_GPL(sdio_readw);
 
 /**
@@ -561,13 +544,12 @@ void sdio_writew(struct sdio_func *func, u16 b, unsigned int addr, int *err_ret)
 {
 	int ret;
 
-	*(__le16 *) func->tmpbuf = cpu_to_le16(b);
+	*(__le16 *)func->tmpbuf = cpu_to_le16(b);
 
 	ret = sdio_memcpy_toio(func, addr, func->tmpbuf, 2);
 	if (err_ret)
 		*err_ret = ret;
 }
-
 EXPORT_SYMBOL_GPL(sdio_writew);
 
 /**
@@ -595,9 +577,8 @@ u32 sdio_readl(struct sdio_func *func, unsigned int addr, int *err_ret)
 		return 0xFFFFFFFF;
 	}
 
-	return le32_to_cpup((__le32 *) func->tmpbuf);
+	return le32_to_cpup((__le32 *)func->tmpbuf);
 }
-
 EXPORT_SYMBOL_GPL(sdio_readl);
 
 /**
@@ -615,13 +596,12 @@ void sdio_writel(struct sdio_func *func, u32 b, unsigned int addr, int *err_ret)
 {
 	int ret;
 
-	*(__le32 *) func->tmpbuf = cpu_to_le32(b);
+	*(__le32 *)func->tmpbuf = cpu_to_le32(b);
 
 	ret = sdio_memcpy_toio(func, addr, func->tmpbuf, 4);
 	if (err_ret)
 		*err_ret = ret;
 }
-
 EXPORT_SYMBOL_GPL(sdio_writel);
 
 /**
@@ -635,7 +615,7 @@ EXPORT_SYMBOL_GPL(sdio_writel);
  *	and @err_ret will contain the error code.
  */
 unsigned char sdio_f0_readb(struct sdio_func *func, unsigned int addr,
-			    int *err_ret)
+	int *err_ret)
 {
 	int ret;
 	unsigned char val;
@@ -654,7 +634,6 @@ unsigned char sdio_f0_readb(struct sdio_func *func, unsigned int addr,
 
 	return val;
 }
-
 EXPORT_SYMBOL_GPL(sdio_f0_readb);
 
 /**
@@ -672,7 +651,7 @@ EXPORT_SYMBOL_GPL(sdio_f0_readb);
  *	writes outside this range.
  */
 void sdio_f0_writeb(struct sdio_func *func, unsigned char b, unsigned int addr,
-		    int *err_ret)
+	int *err_ret)
 {
 	int ret;
 
@@ -688,5 +667,4 @@ void sdio_f0_writeb(struct sdio_func *func, unsigned char b, unsigned int addr,
 	if (err_ret)
 		*err_ret = ret;
 }
-
 EXPORT_SYMBOL_GPL(sdio_f0_writeb);

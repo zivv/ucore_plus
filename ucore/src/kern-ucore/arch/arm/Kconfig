@@ -62,18 +62,22 @@ config DRAM_SIZE
   hex "DRAM size(Byte) "
   default 0x1000000
 
+config KERNEL_BASE
+  hex  "Kernel base address"
+  default 0x10000
+
 config HAVE_BOOTLOADER
   bool "Use uCore bootloader"
   default n
 
 config FPU_ENABLE
   bool "Enable FPU"
-  default n
+  default y
 
 config BIONIC_LIBC
   depends FPU_ENABLE
   bool "Support Bionic Libc"
-  default n
+  default y
 
 config BOOTLOADER_START_ADDR
   depends HAVE_BOOTLOADER
@@ -82,9 +86,7 @@ config BOOTLOADER_START_ADDR
 
 endmenu
 
-source src/kern-ucore/numa/Kconfig
 source src/kern-ucore/mm/Kconfig
 source src/kern-ucore/schedule/Kconfig
 source src/kern-ucore/fs/Kconfig
 source src/kern-ucore/module/Kconfig
-source src/kern-ucore/dde36/Kconfig

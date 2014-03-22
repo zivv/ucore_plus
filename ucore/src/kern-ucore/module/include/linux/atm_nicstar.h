@@ -10,6 +10,7 @@
  *
  ******************************************************************************/
 
+
 #ifndef LINUX_ATM_NICSTAR_H
 #define LINUX_ATM_NICSTAR_H
 
@@ -27,16 +28,19 @@
 #define NS_ADJBUFLEV	_IO('a',ATMIOC_SARPRV+3)
 						/* adjust buffer level */
 
-typedef struct buf_nr {
-	unsigned min;
-	unsigned init;
-	unsigned max;
-} buf_nr;
+typedef struct buf_nr
+{
+   unsigned min;
+   unsigned init;
+   unsigned max;
+}buf_nr;
 
-typedef struct pool_levels {
-	int buftype;
-	int count;		/* (At least for now) only used in NS_GETPSTAT */
-	buf_nr level;
+
+typedef struct pool_levels
+{
+   int buftype;
+   int count;		/* (At least for now) only used in NS_GETPSTAT */
+   buf_nr level;
 } pool_levels;
 
 /* type must be one of the following: */
@@ -44,5 +48,6 @@ typedef struct pool_levels {
 #define NS_BUFTYPE_LARGE 2
 #define NS_BUFTYPE_HUGE 3
 #define NS_BUFTYPE_IOVEC 4
+
 
 #endif /* LINUX_ATM_NICSTAR_H */

@@ -10,10 +10,3 @@
 *.lai
 *.la
 *.a
-
-# temp files
-*~
-*.swp
-*.bak
-*.new
-*.org

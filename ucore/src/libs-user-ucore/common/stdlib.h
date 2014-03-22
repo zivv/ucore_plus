@@ -14,3 +14,4 @@ void srand(unsigned int seed);
 uint32_t hash32(uint32_t val, unsigned int bits);
 
 #endif /* !__LIBS_RAND_H__ */
+

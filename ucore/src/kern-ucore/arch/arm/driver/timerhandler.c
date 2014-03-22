@@ -22,8 +22,7 @@
 
 volatile size_t ticks = 0;
 
-#if (defined UCONFIG_HAVE_LINUX_DDE_BASE) \
- || (defined UCONFIG_HAVE_LINUX_DDE36_BASE)
+#ifdef UCONFIG_HAVE_LINUX_DDE_BASE
 extern volatile uint64_t jiffies_64;
 extern unsigned long volatile jiffies;
 #endif
@@ -32,20 +31,19 @@ static int sched_enabled = 0;
 
 void enable_timer_list()
 {
-	sched_enabled = 1;
+  sched_enabled = 1;
 }
 
 void __common_timer_int_handler()
 {
-	ticks++;
-#if (defined UCONFIG_HAVE_LINUX_DDE_BASE) \
- || (defined UCONFIG_HAVE_LINUX_DDE36_BASE)
-	jiffies++;
-	jiffies_64++;
+  ticks++;
+#ifdef UCONFIG_HAVE_LINUX_DDE_BASE
+  jiffies ++;
+  jiffies_64++;
 #endif
-	//if(ticks % 100 == 0)
-	//  serial_putc('A');
-	extern void run_timer_list();
-	if (sched_enabled)
-		run_timer_list();
+  //if(ticks % 100 == 0)
+  //  serial_putc('A');
+  extern void run_timer_list();
+  if(sched_enabled)
+    run_timer_list();
 }

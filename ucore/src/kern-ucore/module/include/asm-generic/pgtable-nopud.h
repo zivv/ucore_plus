@@ -10,9 +10,7 @@
  * us to conceptually access the pgd entry that this pud is folded into
  * without casting.
  */
-typedef struct {
-	pgd_t pgd;
-} pud_t;
+typedef struct { pgd_t pgd; } pud_t;
 
 #define PUD_SHIFT	PGDIR_SHIFT
 #define PTRS_PER_PUD	1
@@ -24,25 +22,10 @@ typedef struct {
  * setup: the pud is never bad, and a pud always exists (as it's folded
  * into the pgd entry)
  */
-static inline int pgd_none(pgd_t pgd)
-{
-	return 0;
-}
-
-static inline int pgd_bad(pgd_t pgd)
-{
-	return 0;
-}
-
-static inline int pgd_present(pgd_t pgd)
-{
-	return 1;
-}
-
-static inline void pgd_clear(pgd_t * pgd)
-{
-}
-
+static inline int pgd_none(pgd_t pgd)		{ return 0; }
+static inline int pgd_bad(pgd_t pgd)		{ return 0; }
+static inline int pgd_present(pgd_t pgd)	{ return 1; }
+static inline void pgd_clear(pgd_t *pgd)	{ }
 #define pud_ERROR(pud)				(pgd_ERROR((pud).pgd))
 
 #define pgd_populate(mm, pgd, pud)		do { } while (0)
@@ -52,9 +35,9 @@ static inline void pgd_clear(pgd_t * pgd)
  */
 #define set_pgd(pgdptr, pgdval)			set_pud((pud_t *)(pgdptr), (pud_t) { pgdval })
 
-static inline pud_t *pud_offset(pgd_t * pgd, unsigned long address)
+static inline pud_t * pud_offset(pgd_t * pgd, unsigned long address)
 {
-	return (pud_t *) pgd;
+	return (pud_t *)pgd;
 }
 
 #define pud_val(x)				(pgd_val((x).pgd))

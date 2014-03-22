@@ -7,11 +7,10 @@ ENTRY(kern_entry)
 
 SECTIONS {
     /* Load the kernel at this address: "." means the current address */
-    . = 0xc0008000;
+    . = TEXT_START;
     PROVIDE(__kernel_text_start = .);
 
     .text : {
-	  *(.entrytext)
       *(.text .stub .text.* .gnu.linkonce.t.*)
       *(.init.text)
       . = ALIGN(4);
@@ -87,13 +86,6 @@ SECTIONS {
 
     .bss : {
         *(.bss)
-    }
-    . = ALIGN(0x1000);
-
-    .percpu : {
-        PROVIDE(__percpu_start = .);
-        *(.percpu)
-        PROVIDE(__percpu_end = .);
     }
 
     PROVIDE(end = .);

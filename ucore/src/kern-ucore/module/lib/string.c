@@ -57,7 +57,6 @@ int strnicmp(const char *s1, const char *s2, size_t len)
 	}
 	return (int)c1 - (int)c2;
 }
-
 EXPORT_SYMBOL(strnicmp);
 #endif
 
@@ -72,7 +71,6 @@ int strcasecmp(const char *s1, const char *s2)
 	} while (c1 == c2 && c1 != 0);
 	return c1 - c2;
 }
-
 EXPORT_SYMBOL(strcasecmp);
 #endif
 
@@ -87,9 +85,9 @@ int strncasecmp(const char *s1, const char *s2, size_t n)
 	} while ((--n > 0) && c1 == c2 && c1 != 0);
 	return c1 - c2;
 }
-
 EXPORT_SYMBOL(strncasecmp);
 #endif
+
 
 #ifndef __HAVE_ARCH_STRLCPY
 /**
@@ -114,7 +112,6 @@ size_t strlcpy(char *dest, const char *src, size_t size)
 	}
 	return ret;
 }
-
 EXPORT_SYMBOL(strlcpy);
 #endif
 
@@ -144,7 +141,6 @@ char *strncat(char *dest, const char *src, size_t count)
 	}
 	return tmp;
 }
-
 EXPORT_SYMBOL(strncat);
 #endif
 
@@ -167,14 +163,15 @@ size_t strlcat(char *dest, const char *src, size_t count)
 	dest += dsize;
 	count -= dsize;
 	if (len >= count)
-		len = count - 1;
+		len = count-1;
 	memcpy(dest, src, len);
 	dest[len] = 0;
 	return res;
 }
-
 EXPORT_SYMBOL(strlcat);
 #endif
+
+
 
 #ifndef __HAVE_ARCH_STRCHR
 /**
@@ -189,7 +186,6 @@ char *strchr(const char *s, int c)
 			return NULL;
 	return (char *)s;
 }
-
 EXPORT_SYMBOL(strchr);
 #endif
 
@@ -201,14 +197,13 @@ EXPORT_SYMBOL(strchr);
  */
 char *strrchr(const char *s, int c)
 {
-	const char *p = s + strlen(s);
-	do {
-		if (*p == (char)c)
-			return (char *)p;
-	} while (--p >= s);
-	return NULL;
+       const char *p = s + strlen(s);
+       do {
+           if (*p == (char)c)
+               return (char *)p;
+       } while (--p >= s);
+       return NULL;
 }
-
 EXPORT_SYMBOL(strrchr);
 #endif
 
@@ -226,7 +221,6 @@ char *strnchr(const char *s, size_t count, int c)
 			return (char *)s;
 	return NULL;
 }
-
 EXPORT_SYMBOL(strnchr);
 #endif
 
@@ -258,8 +252,8 @@ char *strstrip(char *s)
 
 	return s;
 }
-
 EXPORT_SYMBOL(strstrip);
+
 
 #ifndef __HAVE_ARCH_STRSPN
 /**
@@ -309,7 +303,6 @@ size_t strcspn(const char *s, const char *reject)
 	}
 	return count;
 }
-
 EXPORT_SYMBOL(strcspn);
 #endif
 
@@ -331,7 +324,6 @@ char *strpbrk(const char *cs, const char *ct)
 	}
 	return NULL;
 }
-
 EXPORT_SYMBOL(strpbrk);
 #endif
 
@@ -361,7 +353,6 @@ char *strsep(char **s, const char *ct)
 	*s = end;
 	return sbegin;
 }
-
 EXPORT_SYMBOL(strsep);
 #endif
 
@@ -390,7 +381,6 @@ bool sysfs_streq(const char *s1, const char *s2)
 		return true;
 	return false;
 }
-
 EXPORT_SYMBOL(sysfs_streq);
 
 #ifndef __HAVE_ARCH_MEMSET
@@ -410,7 +400,6 @@ void *memset(void *s, int c, size_t count)
 		*xs++ = c;
 	return s;
 }
-
 EXPORT_SYMBOL(memset);
 #endif
 
@@ -433,7 +422,6 @@ void *memcpy(void *dest, const void *src, size_t count)
 		*tmp++ = *s++;
 	return dest;
 }
-
 EXPORT_SYMBOL(memcpy);
 #endif
 
@@ -466,9 +454,9 @@ void *memmove(void *dest, const void *src, size_t count)
 	}
 	return dest;
 }
-
 EXPORT_SYMBOL(memmove);
 #endif
+
 
 #ifndef __HAVE_ARCH_MEMSCAN
 /**
@@ -490,9 +478,8 @@ void *memscan(void *addr, int c, size_t size)
 		p++;
 		size--;
 	}
-	return (void *)p;
+  	return (void *)p;
 }
-
 EXPORT_SYMBOL(memscan);
 #endif
 
@@ -518,7 +505,6 @@ char *strstr(const char *s1, const char *s2)
 	}
 	return NULL;
 }
-
 EXPORT_SYMBOL(strstr);
 #endif
 
@@ -536,12 +522,11 @@ void *memchr(const void *s, int c, size_t n)
 {
 	const unsigned char *p = s;
 	while (n-- != 0) {
-		if ((unsigned char)c == *p++) {
+        	if ((unsigned char)c == *p++) {
 			return (void *)(p - 1);
 		}
 	}
 	return NULL;
 }
-
 EXPORT_SYMBOL(memchr);
 #endif

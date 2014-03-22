@@ -27,11 +27,12 @@
 #include "base.h"
 #include "power/power.h"
 
+
 static void driver_bound(struct device *dev)
 {
 	if (klist_node_attached(&dev->knode_driver)) {
 		printk(KERN_WARNING "%s: device %s already bound\n",
-		       __func__, kobject_name(&dev->kobj));
+			__func__, kobject_name(&dev->kobj));
 		return;
 	}
 
@@ -50,13 +51,13 @@ static int driver_sysfs_add(struct device *dev)
 	int ret;
 
 	ret = sysfs_create_link(&dev->driver->p->kobj, &dev->kobj,
-				kobject_name(&dev->kobj));
+			  kobject_name(&dev->kobj));
 	if (ret == 0) {
 		ret = sysfs_create_link(&dev->kobj, &dev->driver->p->kobj,
 					"driver");
 		if (ret)
 			sysfs_remove_link(&dev->driver->p->kobj,
-					  kobject_name(&dev->kobj));
+					kobject_name(&dev->kobj));
 	}
 	return ret;
 }
@@ -94,7 +95,6 @@ int device_bind_driver(struct device *dev)
 		driver_bound(dev);
 	return ret;
 }
-
 EXPORT_SYMBOL_GPL(device_bind_driver);
 
 static atomic_t probe_count = ATOMIC_INIT(0);
@@ -112,7 +112,7 @@ static int really_probe(struct device *dev, struct device_driver *drv)
 	dev->driver = drv;
 	if (driver_sysfs_add(dev)) {
 		printk(KERN_ERR "%s: driver_sysfs_add(%s) failed\n",
-		       __func__, dev_name(dev));
+			__func__, dev_name(dev));
 		goto probe_failed;
 	}
 
@@ -162,7 +162,8 @@ done:
  */
 int driver_probe_done(void)
 {
-	pr_debug("%s: probe_count = %d\n", __func__, atomic_read(&probe_count));
+	pr_debug("%s: probe_count = %d\n", __func__,
+		 atomic_read(&probe_count));
 	if (atomic_read(&probe_count))
 		return -EBUSY;
 	return 0;
@@ -257,7 +258,6 @@ int device_attach(struct device *dev)
 	up(&dev->sem);
 	return ret;
 }
-
 EXPORT_SYMBOL_GPL(device_attach);
 
 static int __driver_attach(struct device *dev, void *data)
@@ -302,7 +302,6 @@ int driver_attach(struct device_driver *drv)
 {
 	return bus_for_each_dev(drv->bus, NULL, drv, __driver_attach);
 }
-
 EXPORT_SYMBOL_GPL(driver_attach);
 
 /*
@@ -350,7 +349,6 @@ void device_release_driver(struct device *dev)
 	__device_release_driver(dev);
 	up(&dev->sem);
 }
-
 EXPORT_SYMBOL_GPL(device_release_driver);
 
 /**
@@ -368,7 +366,7 @@ void driver_detach(struct device_driver *drv)
 			break;
 		}
 		dev = list_entry(drv->p->klist_devices.k_list.prev,
-				 struct device, knode_driver.n_node);
+				struct device, knode_driver.n_node);
 		get_device(dev);
 		spin_unlock(&drv->p->klist_devices.k_lock);
 

@@ -10,6 +10,7 @@
 #ifndef __LM_INTERFACE_DOT_H__
 #define __LM_INTERFACE_DOT_H__
 
+
 typedef void (*lm_callback_t) (void *ptr, unsigned int type, void *data);
 
 /*
@@ -152,6 +153,7 @@ typedef void (*lm_callback_t) (void *ptr, unsigned int type, void *data);
 #define LM_RD_GAVEUP		308
 #define LM_RD_SUCCESS		309
 
+
 struct lm_lockname {
 	u64 ln_number;
 	unsigned int ln_type;
@@ -178,8 +180,8 @@ struct lm_lockops {
 	int (*lm_mount) (char *table_name, char *host_data,
 			 lm_callback_t cb, void *cb_data,
 			 unsigned int min_lvb_size, int flags,
-			 struct lm_lockstruct * lockstruct,
-			 struct kobject * fskobj);
+			 struct lm_lockstruct *lockstruct,
+			 struct kobject *fskobj);
 
 	void (*lm_others_may_mount) (void *lockspace);
 
@@ -191,8 +193,7 @@ struct lm_lockops {
 	 * Lock oriented operations
 	 */
 
-	int (*lm_get_lock) (void *lockspace, struct lm_lockname * name,
-			    void **lockp);
+	int (*lm_get_lock) (void *lockspace, struct lm_lockname *name, void **lockp);
 
 	void (*lm_put_lock) (void *lock);
 
@@ -210,14 +211,14 @@ struct lm_lockops {
 	 * Posix Lock oriented operations
 	 */
 
-	int (*lm_plock_get) (void *lockspace, struct lm_lockname * name,
-			     struct file * file, struct file_lock * fl);
+	int (*lm_plock_get) (void *lockspace, struct lm_lockname *name,
+			     struct file *file, struct file_lock *fl);
 
-	int (*lm_plock) (void *lockspace, struct lm_lockname * name,
-			 struct file * file, int cmd, struct file_lock * fl);
+	int (*lm_plock) (void *lockspace, struct lm_lockname *name,
+			 struct file *file, int cmd, struct file_lock *fl);
 
-	int (*lm_punlock) (void *lockspace, struct lm_lockname * name,
-			   struct file * file, struct file_lock * fl);
+	int (*lm_punlock) (void *lockspace, struct lm_lockname *name,
+			   struct file *file, struct file_lock *fl);
 
 	/*
 	 * Client oriented operations
@@ -273,3 +274,4 @@ void gfs2_unmount_lockproto(struct lm_lockstruct *lockstruct);
 void gfs2_withdraw_lockproto(struct lm_lockstruct *lockstruct);
 
 #endif /* __LM_INTERFACE_DOT_H__ */
+

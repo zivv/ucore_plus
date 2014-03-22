@@ -17,12 +17,10 @@ static inline int pci_enable_pcie_error_reporting(struct pci_dev *dev)
 {
 	return -EINVAL;
 }
-
 static inline int pci_disable_pcie_error_reporting(struct pci_dev *dev)
 {
 	return -EINVAL;
 }
-
 static inline int pci_cleanup_aer_uncorrect_error_status(struct pci_dev *dev)
 {
 	return -EINVAL;
@@ -30,3 +28,4 @@ static inline int pci_cleanup_aer_uncorrect_error_status(struct pci_dev *dev)
 #endif
 
 #endif //_AER_H_
+

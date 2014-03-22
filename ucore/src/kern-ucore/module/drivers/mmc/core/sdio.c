@@ -34,8 +34,7 @@ static int sdio_read_fbr(struct sdio_func *func)
 	unsigned char data;
 
 	ret = mmc_io_rw_direct(func->card, 0, 0,
-			       SDIO_FBR_BASE(func->num) + SDIO_FBR_STD_IF, 0,
-			       &data);
+		SDIO_FBR_BASE(func->num) + SDIO_FBR_STD_IF, 0, &data);
 	if (ret)
 		goto out;
 
@@ -43,8 +42,7 @@ static int sdio_read_fbr(struct sdio_func *func)
 
 	if (data == 0x0f) {
 		ret = mmc_io_rw_direct(func->card, 0, 0,
-				       SDIO_FBR_BASE(func->num) +
-				       SDIO_FBR_STD_IF_EXT, 0, &data);
+			SDIO_FBR_BASE(func->num) + SDIO_FBR_STD_IF_EXT, 0, &data);
 		if (ret)
 			goto out;
 	}
@@ -105,7 +103,7 @@ static int sdio_read_cccr(struct mmc_card *card)
 
 	if (cccr_vsn > SDIO_CCCR_REV_1_20) {
 		printk(KERN_ERR "%s: unrecognised CCCR structure version %d\n",
-		       mmc_hostname(card->host), cccr_vsn);
+			mmc_hostname(card->host), cccr_vsn);
 		return -EINVAL;
 	}
 
@@ -210,7 +208,7 @@ static void mmc_sdio_remove(struct mmc_host *host)
 	BUG_ON(!host);
 	BUG_ON(!host->card);
 
-	for (i = 0; i < host->card->sdio_funcs; i++) {
+	for (i = 0;i < host->card->sdio_funcs;i++) {
 		if (host->card->sdio_func[i]) {
 			sdio_remove_func(host->card->sdio_func[i]);
 			host->card->sdio_func[i] = NULL;
@@ -249,10 +247,12 @@ static void mmc_sdio_detect(struct mmc_host *host)
 	}
 }
 
+
 static const struct mmc_bus_ops mmc_sdio_ops = {
 	.remove = mmc_sdio_remove,
 	.detect = mmc_sdio_detect,
 };
+
 
 /*
  * Starting point for SDIO card init.
@@ -363,8 +363,7 @@ int mmc_attach_sdio(struct mmc_host *host, u32 ocr)
 
 #ifdef CONFIG_MMC_EMBEDDED_SDIO
 	if (host->embedded_sdio_data.cccr)
-		memcpy(&card->cccr, host->embedded_sdio_data.cccr,
-		       sizeof(struct sdio_cccr));
+		memcpy(&card->cccr, host->embedded_sdio_data.cccr, sizeof(struct sdio_cccr));
 	else {
 #endif
 		err = sdio_read_cccr(card);
@@ -376,8 +375,7 @@ int mmc_attach_sdio(struct mmc_host *host, u32 ocr)
 
 #ifdef CONFIG_MMC_EMBEDDED_SDIO
 	if (host->embedded_sdio_data.cis)
-		memcpy(&card->cis, host->embedded_sdio_data.cis,
-		       sizeof(struct sdio_cis));
+		memcpy(&card->cis, host->embedded_sdio_data.cis, sizeof(struct sdio_cis));
 	else {
 #endif
 		/*
@@ -421,7 +419,7 @@ int mmc_attach_sdio(struct mmc_host *host, u32 ocr)
 	/*
 	 * Initialize (but don't add) all present functions.
 	 */
-	for (i = 0; i < funcs; i++) {
+	for (i = 0;i < funcs;i++) {
 #ifdef CONFIG_MMC_EMBEDDED_SDIO
 		if (host->embedded_sdio_data.funcs) {
 			struct sdio_func *tmp;
@@ -432,8 +430,7 @@ int mmc_attach_sdio(struct mmc_host *host, u32 ocr)
 			tmp->num = (i + 1);
 			card->sdio_func[i] = tmp;
 			tmp->class = host->embedded_sdio_data.funcs[i].f_class;
-			tmp->max_blksize =
-			    host->embedded_sdio_data.funcs[i].f_maxblksize;
+			tmp->max_blksize = host->embedded_sdio_data.funcs[i].f_maxblksize;
 			tmp->vendor = card->cis.vendor;
 			tmp->device = card->cis.device;
 		} else {
@@ -458,13 +455,14 @@ int mmc_attach_sdio(struct mmc_host *host, u32 ocr)
 	/*
 	 * ...then the SDIO functions.
 	 */
-	for (i = 0; i < funcs; i++) {
+	for (i = 0;i < funcs;i++) {
 		err = sdio_add_func(host->card->sdio_func[i]);
 		if (err)
 			goto remove_added;
 	}
 
 	return 0;
+
 
 remove_added:
 	/* Remove without lock if the device has been added. */
@@ -479,7 +477,7 @@ err:
 	mmc_release_host(host);
 
 	printk(KERN_ERR "%s: error %d whilst initialising SDIO card\n",
-	       mmc_hostname(host), err);
+		mmc_hostname(host), err);
 
 	return err;
 }
@@ -514,7 +512,7 @@ int sdio_reset_comm(struct mmc_card *card)
 	if (mmc_host_is_spi(host)) {
 		err = mmc_spi_set_crc(host, use_spi_crc);
 		if (err)
-			goto err;
+		goto err;
 	}
 
 	if (!mmc_host_is_spi(host)) {
@@ -541,5 +539,4 @@ err:
 	mmc_release_host(host);
 	return err;
 }
-
 EXPORT_SYMBOL(sdio_reset_comm);
