@@ -34,6 +34,7 @@ static int fb_exist = 0;
 
 void fb_init(void)
 {
+    kprintf("fb_init\n"); 
 	unsigned int var;
 	unsigned int count;
 	volatile unsigned int mailbuffer[32];

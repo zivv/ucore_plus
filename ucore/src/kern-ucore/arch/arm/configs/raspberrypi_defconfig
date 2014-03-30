@@ -1,6 +1,6 @@
 #
 # Automatically generated make config: don't edit
-# Sun Dec 16 15:29:58 2012
+# Fri Mar 28 11:38:17 2014
 #
 
 #
@@ -25,9 +25,16 @@ HAVE_RAMDISK=y
 RAMDISK_FILE="sfs.img"
 DRAM_START=0x0
 DRAM_SIZE=0x8000000
-KERNEL_BASE=0x1000000
 # HAVE_BOOTLOADER is not set
 # FPU_ENABLE is not set
+
+#
+# NUMA Support
+#
+NR_CPUS=1
+NR_NUMA_NODES=1
+NR_MEMS_PER_NODE=1
+# ENABLE_IPI is not set
 
 #
 # Memory Management
@@ -41,6 +48,7 @@ HEAP_SLAB=y
 #
 # SCHEDULER_RR is not set
 SCHEDULER_MLFQ=y
+# SCHEDULER_MPRR is not set
 
 #
 # Filesystem
@@ -55,3 +63,8 @@ HAVE_FATFS=y
 # Linux Device Driver Environment
 #
 # HAVE_LINUX_DDE_BASE is not set
+
+#
+# Linux Device Driver Environment 3.6
+#
+# HAVE_LINUX_DDE36_BASE is not set

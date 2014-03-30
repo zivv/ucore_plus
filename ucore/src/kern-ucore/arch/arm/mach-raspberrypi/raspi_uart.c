@@ -36,7 +36,7 @@ void serial_init_early()
 	kprintf("Serial init skipped: already initialized in bootloader\n");
 	serial_exists = 1;
 
-	fb_init();
+	//fb_init();
 }
 
 void serial_init_mmu()
