@@ -1,6 +1,6 @@
 #
 # Automatically generated make config: don't edit
-# Fri Mar 28 11:38:17 2014
+# Sun Apr 20 21:34:03 2014
 #
 
 #
@@ -16,11 +16,11 @@ ADDITIONAL_LDFLAGS=""
 # ARM_CPU_V5 is not set
 ARM_CPU_V6=y
 # ARM_CPU_V7 is not set
-# ARM_BOARD_GOLDFISH is not set
+ARM_BOARD_GOLDFISH=y
 # ARM_BOARD_VERSATILEPB is not set
 # ARM_BOARD_AT91 is not set
 # ARM_BOARD_PANDABOARD is not set
-ARM_BOARD_RASPBERRYPI=y
+# ARM_BOARD_RASPBERRYPI is not set
 HAVE_RAMDISK=y
 RAMDISK_FILE="sfs.img"
 DRAM_START=0x0

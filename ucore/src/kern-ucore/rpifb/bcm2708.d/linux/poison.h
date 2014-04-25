@@ -1,0 +1,9 @@
+#ifndef __LINUX_POISON_H__
+#define __LINUX_POISON_H__
+
+# define POISON_POINTER_DELTA 0
+
+#define LIST_POISON1  ((void *) 0x00100100 + POISON_POINTER_DELTA)
+#define LIST_POISON2  ((void *) 0x00200200 + POISON_POINTER_DELTA)
+
+#endif /* ! __LINUX_POISON_H__ */

@@ -34,7 +34,7 @@ MAKEFLAGS += -rR --no-print-directory
 ARCH ?= $(patsubst "%",%,$(UCONFIG_ARCH))
 ARCH ?= amd64
 BOARD ?= default
-export BOARD ARCH
+#export BOARD ARCH
 CROSS_COMPILE ?= $(UCONFIG_CROSS_COMPILE)
 
 CONFIG_CONFIG_IN = $(KTREE)/arch/$(ARCH)/Kconfig

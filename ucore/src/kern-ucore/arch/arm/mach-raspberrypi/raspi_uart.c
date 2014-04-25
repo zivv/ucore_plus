@@ -37,6 +37,10 @@ void serial_init_early()
 	serial_exists = 1;
 
 	//fb_init();
+    //CCTODO
+    //if (bcm2708_fb_init()) {
+    //    panic("fb init failed\n");
+    //}
 }
 
 void serial_init_mmu()
@@ -60,7 +64,7 @@ static void serial_putc_sub(int c)
 	dmb();
 	outb(AUX_MU_IO_REG, c);
 	dmb();
-	fb_write(c);
+	//fb_write(c);
 	dmb();
 }
 

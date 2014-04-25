@@ -2,9 +2,9 @@
 
 cd ucore
 
-#rascleandefmake
-#make clean
-#make ARCH=arm BOARD=raspberrypi defconfig
+rascleandefmake
+make clean
+make ARCH=arm BOARD=raspberrypi defconfig
 make BOARD=raspberrypi sfsimg && make BOARD=raspberrypi kernel
 
 cd ..

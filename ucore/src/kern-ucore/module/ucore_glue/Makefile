@@ -5,3 +5,4 @@ obj-y += idr.o scatterlist.o
 
 obj-$(UCONFIG_ARM_BOARD_GOLDFISH) += arm_iomap_glue.o
 obj-$(UCONFIG_ARM_BOARD_PANDABOARD) += arm_iomap_glue.o
+obj-$(UCONFIG_ARM_BOARD_RASPBERRYPI) += arm_iomap_glue.o
