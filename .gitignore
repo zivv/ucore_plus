@@ -17,3 +17,7 @@
 *.bak
 *.new
 *.org
+
+# changcheng's script
+cc*.sh
+cc*.py
