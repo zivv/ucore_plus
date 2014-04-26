@@ -1,8 +1,13 @@
+//mach-bcm2708
 #include <asm/dma-mapping.h>
 #include <asm/io.h>
 #include <asm/string.h>
 #include <mach/dma.h>
 #include <mach/vcio.h>
+#include <mach/irqs.h>
+#include <mach/platform.h>
+
+//generic
 #include <linux/console.h>
 #include <linux/debugfs.h>
 #include <linux/device.h>
@@ -16,16 +21,33 @@
 #include <linux/slub_def.h>
 #include <linux/string.h>
 #include <linux/wait.h>
+#include <linux/sizes.h>
+
+//ucore
+#include <pmm.h>
 
 #define DDE_WEAK __attribute__((weak))
 
 #define dde_dummy_printf(...)
 #define dde_printf(...) kprintf(__VA_ARGS__)
 
-DDE_WEAK void * __arm_ioremap(unsigned long a, size_t b, unsigned int c) {
-	dde_printf("__arm_ioremap not implemented\n");
-	return 0;
+void __iomem *__arm_ioremap(unsigned long phys_addr, size_t size,
+			    unsigned int mtype)
+{
+	printk(KERN_INFO "ioremap %08x %08x \n", phys_addr, size);
+	return __ucore_ioremap(phys_addr, size, mtype);
+        // defined in ucore arch/arm/mm/pmm.c 
 }
+
+
+
+//DDE_WEAK void * __arm_ioremap(unsigned long a, size_t b, unsigned int c) {
+//	printk(KERN_INFO "ioremap %08x %08x \n", phys_addr, size);
+//	return __ucore_ioremap(phys_addr, size, mtype);
+//
+//	dde_printf("__arm_ioremap not implemented\n");
+//	return 0;
+//}
 
 DDE_WEAK void __arm_iounmap(volatile void * a) {
 	dde_printf("__arm_iounmap not implemented\n");
@@ -86,7 +108,38 @@ DDE_WEAK int autoremove_wake_function(wait_queue_t * a, unsigned int b, int c, v
 	return 0;
 }
 
-DDE_WEAK int bcm_dma_chan_alloc(unsigned int a, void ** b, int * c) {
+static unsigned char bcm_dma_irqs[] = {
+	IRQ_DMA0,
+	IRQ_DMA1,
+	IRQ_DMA2,
+	IRQ_DMA3,
+	IRQ_DMA4,
+	IRQ_DMA5,
+	IRQ_DMA6,
+	IRQ_DMA7,
+	IRQ_DMA8,
+	IRQ_DMA9,
+	IRQ_DMA10,
+	IRQ_DMA11,
+	IRQ_DMA12
+};
+
+
+#define BCM2708_DMA_CHAN(n)	((n)<<8) /* base address */
+#define BCM2708_DMA_CHANIO(dma_base, n) \
+   ((void __iomem *)((char *)(dma_base)+BCM2708_DMA_CHAN(n)))
+
+DDE_WEAK int bcm_dma_chan_alloc(unsigned int a, void __iomem **out_dma_base, 
+                                int * bcm_dma_irqs) 
+{
+    int rc = 0;
+    void __iomem *dma_base = __arm_ioremap(DMA_BASE, SZ_4K, 0);
+
+    *out_dma_base = BCM2708_DMA_CHANIO(dma_base, rc);
+    *out_dma_irq = bcm_dma_irqs[rc];
+
+    return rc;
+
 	dde_printf("bcm_dma_chan_alloc not implemented\n");
 	return 0;
 }
