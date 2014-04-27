@@ -2,6 +2,7 @@
 #include <asm/dma-mapping.h>
 #include <asm/io.h>
 #include <asm/string.h>
+#include <asm/barrier.h>
 #include <mach/dma.h>
 #include <mach/vcio.h>
 #include <mach/irqs.h>
@@ -130,14 +131,13 @@ static unsigned char bcm_dma_irqs[] = {
    ((void __iomem *)((char *)(dma_base)+BCM2708_DMA_CHAN(n)))
 
 DDE_WEAK int bcm_dma_chan_alloc(unsigned int a, void __iomem **out_dma_base, 
-                                int * bcm_dma_irqs) 
+                                int * out_dma_irq) 
 {
     int rc = 0;
-    void __iomem *dma_base = __arm_ioremap(DMA_BASE, SZ_4K, 0);
-
+    resource_size_t DMA_SIZE = SZ_4K;
+    void __iomem *dma_base = __arm_ioremap(DMA_BASE, DMA_SIZE, 0);
     *out_dma_base = BCM2708_DMA_CHANIO(dma_base, rc);
     *out_dma_irq = bcm_dma_irqs[rc];
-
     return rc;
 
 	dde_printf("bcm_dma_chan_alloc not implemented\n");
@@ -149,16 +149,37 @@ DDE_WEAK int bcm_dma_chan_free(int a) {
 	return 0;
 }
 
-DDE_WEAK bool bcm_dma_is_busy(void * a) {
+DDE_WEAK bool bcm_dma_is_busy(void __iomem *dma_chan_base) {
+	dsb();
+
+	return readl(dma_chan_base + BCM2708_DMA_CS) & BCM2708_DMA_ACTIVE;
+
 	dde_printf("bcm_dma_is_busy not implemented\n");
 	return 0;
 }
 
-DDE_WEAK void bcm_dma_start(void * a, dma_addr_t b) {
+DDE_WEAK void bcm_dma_start(void __iomem *dma_chan_base, 
+        dma_addr_t control_block)
+{
+	dsb();	/* ARM data synchronization (push) operation */
+
+	writel(control_block,	     dma_chan_base + BCM2708_DMA_ADDR);
+	writel(BCM2708_DMA_ACTIVE,   dma_chan_base + BCM2708_DMA_CS);
+
+    return;
+
 	dde_printf("bcm_dma_start not implemented\n");
 }
 
 DDE_WEAK void bcm_dma_wait_idle(void * a) {
+    dsb();
+
+  /* ugly busy wait only option for now */
+    while (readl(dma_chan_base + BCM2708_DMA_CS) & BCM2708_DMA_ACTIVE)
+        cpu_relax();
+
+    return;
+
 	dde_printf("bcm_dma_wait_idle not implemented\n");
 }
 
