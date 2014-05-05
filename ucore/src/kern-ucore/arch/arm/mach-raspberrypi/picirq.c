@@ -19,34 +19,57 @@
 #include <memlayout.h>
 
 static bool did_init = 0;
+
 #define IRQ_PENDING_BASIC 0x2000B200
 #define IRQ_PENDING_1 0x2000B204
+#define IRQ_PENDING_2 0x2000B208
 #define IRQ_ENABLE_BASIC 0x2000B218
 #define IRQ_ENABLE_1 0x2000B210
+#define IRQ_ENABLE_2 0x2000B214
 #define IRQ_DISABLE_BASIC 0x2000B224
 #define IRQ_DISABLE_1 0x2000B21C
+#define IRQ_DISABLE_2 0x2000B220
+
+#define PENDING_BASIC_NR_IRQS 8
+#define PENDING_1_NR_IRQS 32
+#define PENDING_2_NR_IRQS 32
+
+#define PENDING_1_BIT 8
+#define PENDING_2_BIT 9
+
+#define SHORTCUT_MASK 0x01ffc00
+#define SHORTCUT_IGNORE_BITS 10
+#define SHORTCUT_IGNORE_MASK 0x00003ff
+// shortcuts are GPU IRQ 7, 9, 10, 18, 19, 53, 54, 55, 56, 57, 62
+static unsigned int shortcut_map[11] = {15, 17, 18, 26, 27, 61, 62, 63, 64, 65, 70};
+
+#define NR_IRQS (PENDING_BASIC_NR_IRQS + PENDING_1_NR_IRQS + PENDING_2_NR_IRQS)
 
 void pic_disable(unsigned int irq)
 {
-	if (irq <= 7) {
+	if (irq < PENDING_BASIC_NR_IRQS) {
 		outw(IRQ_DISABLE_BASIC, 1 << irq);
-	} else if (irq == 29) {
-		outw(IRQ_DISABLE_1, 1 << irq);
+	} else if (irq < PENDING_BASIC_NR_IRQS+PENDING_1_NR_IRQS) {
+		outw(IRQ_DISABLE_1, 1 << (irq-PENDING_BASIC_NR_IRQS));
+	} else if (irq < NR_IRQS) {
+		outw(IRQ_DISABLE_2, 1 << (irq-PENDING_BASIC_NR_IRQS-PENDING_1_NR_IRQS));
 	} else {
 		//for rationale, read top of this file
-		kprintf("WARNING: pic_disable: irq>7 && irq!=29\n");
+		kprintf("WARNING: pic_disable: irq>=%d\n", NR_IRQS);
 	}
 }
 
 void pic_enable(unsigned int irq)
 {
-	if (irq <= 7) {
+	if (irq < PENDING_BASIC_NR_IRQS) {
 		outw(IRQ_ENABLE_BASIC, 1 << irq);
-	} else if (irq == 29) {
-		outw(IRQ_ENABLE_1, 1 << irq);
+	} else if (irq < PENDING_BASIC_NR_IRQS+PENDING_1_NR_IRQS) {
+		outw(IRQ_ENABLE_1, 1 << (irq-PENDING_BASIC_NR_IRQS));
+	} else if (irq < NR_IRQS) {
+		outw(IRQ_ENABLE_2, 1 << (irq-PENDING_BASIC_NR_IRQS-PENDING_1_NR_IRQS));
 	} else {
 		//for rationale, read top of this file
-		kprintf("WARNING: pic_enable: irq>7 && irq!=29\n");
+		kprintf("WARNING: pic_enable: irq>=%d\n", NR_IRQS);
 	}
 }
 
@@ -55,16 +78,16 @@ struct irq_action {
 	void *opaque;
 };
 
-struct irq_action actions[32];
+struct irq_action actions[NR_IRQS];
 
 void register_irq(int irq, ucore_irq_handler_t handler, void *opaque)
 {
-	if (irq <= 7 || irq == 29) {
+	if (irq >= 0 && irq < NR_IRQS) {
 		actions[irq].handler = handler;
 		actions[irq].opaque = opaque;
 	} else {
 		//for rationale, read top of this file
-		kprintf("WARNING: register_irq: irq>7 && irq!=29\n");
+		kprintf("WARNING: register_irq: irq>=%d\n", NR_IRQS);
 	}
 }
 
@@ -77,6 +100,7 @@ void pic_init(void)
 	//disable all
 	outw(IRQ_DISABLE_BASIC, ~0);
 	outw(IRQ_DISABLE_1, ~0);
+	outw(IRQ_DISABLE_2, ~0);
 	//enable IRQ : done in entry.S
 	kprintf("pic_init()\n");
 
@@ -87,18 +111,20 @@ void irq_handler()
 	uint32_t pending0;
 	while ((pending0 = inw(IRQ_PENDING_BASIC)) != 0) {
 		uint32_t irq;
-		//for rationale of 7 and 29, read top of this file
 		uint32_t firstbit0 = __builtin_ctz(pending0);
-		if (firstbit0 <= 7) {
+		if (firstbit0 < PENDING_BASIC_NR_IRQS) {
 			irq = firstbit0;
-		} else if (firstbit0 == 8) {
+    } else if (pending0 & SHORTCUT_MASK) {
+      irq = shortcut_map[__builtin_ctz(pending0|SHORTCUT_IGNORE_MASK) -
+        SHORTCUT_IGNORE_BITS];
+		} else if (firstbit0 == PENDING_1_BIT) {
 			uint32_t pending1 = inw(IRQ_PENDING_1);
 			uint32_t firstbit1 = __builtin_ctz(pending1);
-			if (firstbit1 == 29)
-				irq = 29;
-			else
-				panic("invalid irq: gpu 0x%02x(%d)\n",
-				      firstbit1, firstbit1);
+      irq = firstbit1 + PENDING_BASIC_NR_IRQS;
+		} else if (firstbit0 == PENDING_2_BIT) {
+			uint32_t pending2 = inw(IRQ_PENDING_2);
+			uint32_t firstbit2 = __builtin_ctz(pending2);
+      irq = firstbit2 + PENDING_BASIC_NR_IRQS + PENDING_1_NR_IRQS;
 		} else {
 			panic("invalid basic pending register: 0x%08x\n",
 			      pending0);
@@ -114,4 +140,6 @@ void irq_handler()
 
 void irq_clear(unsigned int source)
 {
+  actions[source].handler = NULL;
+  actions[source].opaque = NULL;
 }
