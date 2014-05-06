@@ -26,6 +26,7 @@
 
 //ucore
 #include <pmm.h>
+#include <picirq.h>
 
 #define DDE_WEAK __attribute__((weak))
 
@@ -252,8 +253,9 @@ DDE_WEAK void finish_wait(wait_queue_head_t * a, wait_queue_t * b) {
 	dde_printf("finish_wait not implemented\n");
 }
 
-DDE_WEAK void free_irq(unsigned int a, void * b) {
-	dde_printf("free_irq not implemented\n");
+DDE_WEAK void free_irq(unsigned int irq, void * dev_id) {
+  irq_clear(irq);
+	//dde_printf("free_irq not implemented\n");
 }
 
 DDE_WEAK void kfree(const void * a) {
@@ -286,8 +288,10 @@ DDE_WEAK int register_framebuffer(struct fb_info * a) {
 	return 0;
 }
 
-DDE_WEAK int request_threaded_irq(unsigned int a, irq_handler_t b, irq_handler_t c, unsigned long d, const char * e, void * f) {
-	dde_printf("request_threaded_irq not implemented\n");
+DDE_WEAK int request_threaded_irq(unsigned int irq, irq_handler_t handler,
+    irq_handler_t thread_fn, unsigned long flags, const char * name, void * dev) {
+  register_irq(irq, handler, NULL);
+	//dde_printf("request_threaded_irq not implemented\n");
 	return 0;
 }
 
