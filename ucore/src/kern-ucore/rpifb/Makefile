@@ -1,5 +1,7 @@
 obj-y := bcm2708.dummy.o bcm2708_fb.o
 
+dirs-y := cfb
+
 TARGET_CFLAGS += -D__KERNEL__ \
 				 -D__KERN__ \
 				 -DKBUILD_BASENAME=\"dde\" \
