@@ -9,10 +9,14 @@
 
 void *dde_kmalloc(size_t size, gfp_t flags)
 {
+    kprintf("dde_kmalloc begin\n");
 	void *ptr = kmalloc(size);
+    kprintf("dde_kmalloc end\n");
 
 	if (flags | __GFP_ZERO) {
+        kprintf("memset begin\n");
 		memset(ptr, 0, size);
+        kprintf("memset end\n");
 	}
 	return ptr;
 }

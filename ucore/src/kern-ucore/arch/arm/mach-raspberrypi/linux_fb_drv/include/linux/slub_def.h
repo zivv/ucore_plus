@@ -93,7 +93,7 @@ static __always_inline void *kmalloc_large(size_t size, gfp_t flags)
 	unsigned int order = get_order(size);
 	return kmalloc_order_trace(size, flags, order);
 }
-
+__attribute__((weak))
 static __always_inline void *kmalloc(size_t size, gfp_t flags)
 {
 	if (__builtin_constant_p(size)) {

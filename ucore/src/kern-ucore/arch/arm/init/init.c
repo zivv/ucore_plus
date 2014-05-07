@@ -161,6 +161,15 @@ int kern_init(void)
 
 	intr_enable();		// enable irq interrupt
 
+#ifdef PI_LINUX_FB_DRV
+    kprintf("Initing BCM2708_FB\n");
+    if (bcm2708_fb_init()) {
+        panic("BCM2708_FB init failed\n");
+    } else {
+        kprintf("BCM2708_FB inited\n");
+    }
+#endif
+
 #ifdef UCONFIG_HAVE_LINUX_DDE_BASE
 	calibrate_delay();
 	dde_init();

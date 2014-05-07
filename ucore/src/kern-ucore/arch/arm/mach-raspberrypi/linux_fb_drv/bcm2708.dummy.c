@@ -283,3 +283,10 @@ DDE_WEAK int unregister_framebuffer(struct fb_info * a) {
 	return 0;
 }
 
+void *kzalloc(size_t size, gfp_t flags)
+{
+    dde_printf("kzalloc begin\n");
+    void *ret = dde_kmalloc(size, flags);
+    dde_printf("kzalloc end\n");
+    return ret;
+}

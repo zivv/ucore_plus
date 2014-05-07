@@ -639,13 +639,16 @@ out:
 
 int bcm2708_fb_probe(struct platform_device *dev)
 {
-    pr_info("bcm2708_fb_probe\n");
+    kprintf("%s\n",__func__);
 	struct bcm2708_fb *fb;
 	int ret;
 
-    pr_info("kzalloc begin\n");
+    kzalloc(1,GFP_KERNEL);
+
+    kprintf("kzalloc in %s begin\n", __func__);
 	fb = kzalloc(sizeof(struct bcm2708_fb), GFP_KERNEL);
-    pr_info("kzalloc done!\n");
+    kprintf("fb = %x\n", fb);
+    kprintf("kzalloc done!\n");
 	if (!fb) {
 		dev_err(&dev->dev,
 			"could not allocate new bcm2708_fb struct\n");

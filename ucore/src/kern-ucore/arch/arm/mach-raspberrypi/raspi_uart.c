@@ -37,12 +37,7 @@ void serial_init_early()
 	serial_exists = 1;
 
 	//fb_init();
-    kprintf("Initing BCM2708_FB\n");
-    if (bcm2708_fb_init()) {
-        panic("BCM2708_FB init failed\n");
-    } else {
-        kprintf("BCM2708_FB inited\n");
-    }
+    
 }
 
 void serial_init_mmu()

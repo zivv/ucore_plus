@@ -84,9 +84,10 @@ static inline void *kmalloc_node(size_t size, gfp_t flags, int node)
 
 void *kmem_cache_alloc(struct kmem_cache *, gfp_t);
 
-static inline void *kzalloc(size_t size, gfp_t flags)
-{
-	return kmalloc(size, flags | __GFP_ZERO);
-}
+//static inline void *kzalloc(size_t size, gfp_t flags)
+__attribute__((weak)) void *kzalloc(size_t size, gfp_t flags);
+//{
+//	return kmalloc(size, flags | __GFP_ZERO);
+//}
 
 #endif /* ! __LINUX_SLAB_H__ */
