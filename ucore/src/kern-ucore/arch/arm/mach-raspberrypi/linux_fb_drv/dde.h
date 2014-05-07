@@ -15,7 +15,6 @@
 
 #define UCORE_KAP_IO 0x00000001
 #define WARN(...) kprintf(__VA_ARGS__)
-#define PI_LINUX_FB_DRV
 
 typedef unsigned int gfp_t;
 

@@ -643,8 +643,6 @@ int bcm2708_fb_probe(struct platform_device *dev)
 	struct bcm2708_fb *fb;
 	int ret;
 
-    kzalloc(1,GFP_KERNEL);
-
     kprintf("kzalloc in %s begin\n", __func__);
 	fb = kzalloc(sizeof(struct bcm2708_fb), GFP_KERNEL);
     kprintf("fb = %x\n", fb);

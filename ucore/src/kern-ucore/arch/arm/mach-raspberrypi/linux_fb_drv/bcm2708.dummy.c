@@ -60,9 +60,11 @@ DDE_WEAK void __wake_up(wait_queue_head_t * a, unsigned int b, int c, void * d) 
 	dde_printf("__wake_up not implemented\n");
 }
 
+
 void *arm_dma_alloc(struct device *dev, size_t size, dma_addr_t *handle,
 		    gfp_t gfp, struct dma_attrs *attrs)
 {
+    kprintf("%s begin\n", __func__);
     printk("dma_alloc_writecombine size %08x\n", size);
 	void *cpuaddr =
 	    dde_kva_alloc_pages((size + PAGE_SIZE - 1) / PAGE_SIZE,
@@ -289,4 +291,10 @@ void *kzalloc(size_t size, gfp_t flags)
     void *ret = dde_kmalloc(size, flags);
     dde_printf("kzalloc end\n");
     return ret;
+}
+
+void *dma_alloc_writecombine(struct device *dev, size_t size,
+				       dma_addr_t *dma_handle, gfp_t flag)
+{
+    return arm_dma_alloc(dev,size,dma_handle,flag,0);
 }
