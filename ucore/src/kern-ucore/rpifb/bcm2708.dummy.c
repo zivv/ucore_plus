@@ -24,32 +24,20 @@
 #include <linux/wait.h>
 #include <linux/sizes.h>
 
-//ucore
-#include <pmm.h>
-#include <picirq.h>
+#include "dde.h" 
 
 #define DDE_WEAK __attribute__((weak))
 
 #define dde_dummy_printf(...)
 #define dde_printf(...) kprintf(__VA_ARGS__)
 
-void __iomem *__arm_ioremap(unsigned long phys_addr, size_t size,
+DDE_WEAK void __iomem *__arm_ioremap(unsigned long phys_addr, size_t size,
 			    unsigned int mtype)
 {
 	printk(KERN_INFO "ioremap %08x %08x \n", phys_addr, size);
 	return __ucore_ioremap(phys_addr, size, mtype);
-        // defined in ucore arch/arm/mm/pmm.c 
 }
 
-
-
-//DDE_WEAK void * __arm_ioremap(unsigned long a, size_t b, unsigned int c) {
-//	printk(KERN_INFO "ioremap %08x %08x \n", phys_addr, size);
-//	return __ucore_ioremap(phys_addr, size, mtype);
-//
-//	dde_printf("__arm_ioremap not implemented\n");
-//	return 0;
-//}
 
 DDE_WEAK void __arm_iounmap(volatile void * a) {
 	dde_printf("__arm_iounmap not implemented\n");
@@ -72,28 +60,12 @@ DDE_WEAK void __wake_up(wait_queue_head_t * a, unsigned int b, int c, void * d) 
 	dde_printf("__wake_up not implemented\n");
 }
 
-#include <pmm.h>
-#include <vmm.h>
-
-void *ucore_kva_alloc_pages(size_t n, unsigned int flags)
-{
-	struct Page *pages = alloc_pages(n);
-	if (!pages)
-		return NULL;
-	if (flags & UCORE_KAP_IO) {
-		int i;
-		for (i = 0; i < n; i++)
-			SetPageIO(&pages[i]);
-	}
-	return page2kva(pages);
-}
-
 void *arm_dma_alloc(struct device *dev, size_t size, dma_addr_t *handle,
 		    gfp_t gfp, struct dma_attrs *attrs)
 {
-    printk(KERN_ALERT "dma_alloc_writecombine size %08x\n", size);
+    printk("dma_alloc_writecombine size %08x\n", size);
 	void *cpuaddr =
-	    ucore_kva_alloc_pages((size + PAGE_SIZE - 1) / PAGE_SIZE,
+	    dde_kva_alloc_pages((size + PAGE_SIZE - 1) / PAGE_SIZE,
 				  UCORE_KAP_IO);
 	*handle = (dma_addr_t)__pfn_to_bus(cpuaddr);
 	return cpuaddr;
@@ -172,7 +144,7 @@ DDE_WEAK void bcm_dma_start(void __iomem *dma_chan_base,
 	dde_printf("bcm_dma_start not implemented\n");
 }
 
-DDE_WEAK void bcm_dma_wait_idle(void * a) {
+DDE_WEAK void bcm_dma_wait_idle(void __iomem * dma_chan_base) {
     dsb();
 
   /* ugly busy wait only option for now */

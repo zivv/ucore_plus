@@ -364,8 +364,8 @@ void cfb_fillrect(struct fb_info *p, const struct fb_fillrect *rect)
 	}
 }
 
-EXPORT_SYMBOL(cfb_fillrect);
-
-MODULE_AUTHOR("James Simmons <jsimmons@users.sf.net>");
-MODULE_DESCRIPTION("Generic software accelerated fill rectangle");
-MODULE_LICENSE("GPL");
+//EXPORT_SYMBOL(cfb_fillrect);
+//
+//MODULE_AUTHOR("James Simmons <jsimmons@users.sf.net>");
+//MODULE_DESCRIPTION("Generic software accelerated fill rectangle");
+//MODULE_LICENSE("GPL");

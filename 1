@@ -1,0 +1,1363 @@
+<command-line>:0:0: warning: "__LINUX_ARM_ARCH__" redefined [enabled by default]
+<command-line>:0:0: note: this is the location of the previous definition
+In file included from ./bcm2708.d/linux/preempt.h:4:0,
+                 from ./bcm2708.d/linux/spinlock.h:7,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/thread_info.h:83:1: error: unknown type name 'bool'
+ static inline bool test_restore_sigmask(void)
+ ^
+./bcm2708.d/linux/thread_info.h:87:1: error: unknown type name 'bool'
+ static inline bool test_and_clear_restore_sigmask(void)
+ ^
+In file included from ./bcm2708.d/linux/atomic.h:4:0,
+                 from ./bcm2708.d/linux/spinlock.h:122,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/asm/atomic.h:13:44: error: unknown type name 'atomic_t'
+ static inline int atomic_add_return(int i, atomic_t *v)
+                                            ^
+./bcm2708.d/asm/atomic.h:27:44: error: unknown type name 'atomic_t'
+ static inline int atomic_sub_return(int i, atomic_t *v)
+                                            ^
+./bcm2708.d/asm/atomic.h:41:34: error: unknown type name 'atomic_t'
+ static inline int atomic_cmpxchg(atomic_t *v, int old, int new)
+                                  ^
+./bcm2708.d/asm/atomic.h:55:39: error: unknown type name 'atomic_t'
+ static inline int __atomic_add_unless(atomic_t *v, int a, int u)
+                                       ^
+In file included from ./bcm2708.d/linux/spinlock.h:122:0,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/atomic.h:6:37: error: unknown type name 'atomic_t'
+ static inline int atomic_add_unless(atomic_t *v, int a, int u)
+                                     ^
+./bcm2708.d/linux/atomic.h:13:46: error: unknown type name 'atomic_t'
+ static inline int atomic_inc_unless_negative(atomic_t *p)
+                                              ^
+./bcm2708.d/linux/atomic.h:24:46: error: unknown type name 'atomic_t'
+ static inline int atomic_dec_unless_positive(atomic_t *p)
+                                              ^
+In file included from ./bcm2708.d/linux/atomic.h:35:0,
+                 from ./bcm2708.d/linux/spinlock.h:122,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/asm-generic/atomic-long.h:6:1: error: unknown type name 'atomic_t'
+ typedef atomic_t atomic_long_t;
+ ^
+./bcm2708.d/asm-generic/atomic-long.h: In function 'atomic_long_read':
+./bcm2708.d/asm-generic/atomic-long.h:10:2: error: unknown type name 'atomic_t'
+  atomic_t *v = (atomic_t *)l;
+  ^
+./bcm2708.d/asm-generic/atomic-long.h:10:17: error: 'atomic_t' undeclared (first use in this function)
+  atomic_t *v = (atomic_t *)l;
+                 ^
+./bcm2708.d/asm-generic/atomic-long.h:10:17: note: each undeclared identifier is reported only once for each function it appears in
+./bcm2708.d/asm-generic/atomic-long.h:10:27: error: expected expression before ')' token
+  atomic_t *v = (atomic_t *)l;
+                           ^
+In file included from ./bcm2708.d/linux/atomic.h:4:0,
+                 from ./bcm2708.d/linux/spinlock.h:122,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/asm/atomic.h:10:46: error: request for member 'counter' in something not a structure or union
+ #define atomic_read(v) (*(volatile int *)&(v)->counter)
+                                              ^
+./bcm2708.d/asm-generic/atomic-long.h:12:15: note: in expansion of macro 'atomic_read'
+  return (long)atomic_read(v);
+               ^
+In file included from ./bcm2708.d/linux/atomic.h:35:0,
+                 from ./bcm2708.d/linux/spinlock.h:122,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/asm-generic/atomic-long.h: In function 'atomic_long_inc':
+./bcm2708.d/asm-generic/atomic-long.h:17:2: error: unknown type name 'atomic_t'
+  atomic_t *v = (atomic_t *)l;
+  ^
+./bcm2708.d/asm-generic/atomic-long.h:17:17: error: 'atomic_t' undeclared (first use in this function)
+  atomic_t *v = (atomic_t *)l;
+                 ^
+./bcm2708.d/asm-generic/atomic-long.h:17:27: error: expected expression before ')' token
+  atomic_t *v = (atomic_t *)l;
+                           ^
+./bcm2708.d/asm-generic/atomic-long.h: In function 'atomic_long_dec':
+./bcm2708.d/asm-generic/atomic-long.h:24:2: error: unknown type name 'atomic_t'
+  atomic_t *v = (atomic_t *)l;
+  ^
+./bcm2708.d/asm-generic/atomic-long.h:24:17: error: 'atomic_t' undeclared (first use in this function)
+  atomic_t *v = (atomic_t *)l;
+                 ^
+./bcm2708.d/asm-generic/atomic-long.h:24:27: error: expected expression before ')' token
+  atomic_t *v = (atomic_t *)l;
+                           ^
+./bcm2708.d/asm-generic/atomic-long.h: In function 'atomic_long_add':
+./bcm2708.d/asm-generic/atomic-long.h:31:2: error: unknown type name 'atomic_t'
+  atomic_t *v = (atomic_t *)l;
+  ^
+./bcm2708.d/asm-generic/atomic-long.h:31:17: error: 'atomic_t' undeclared (first use in this function)
+  atomic_t *v = (atomic_t *)l;
+                 ^
+./bcm2708.d/asm-generic/atomic-long.h:31:27: error: expected expression before ')' token
+  atomic_t *v = (atomic_t *)l;
+                           ^
+In file included from ./bcm2708.d/asm/dma-mapping.h:4:0,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/mm_types.h: At top level:
+./bcm2708.d/linux/mm_types.h:43:4: error: unknown type name 'bool'
+    bool pfmemalloc; /* If set by the page allocator,
+    ^
+./bcm2708.d/linux/mm_types.h:87:6: error: unknown type name 'atomic_t'
+      atomic_t _mapcount;
+      ^
+./bcm2708.d/linux/mm_types.h:96:5: error: unknown type name 'atomic_t'
+     atomic_t _count;  /* Usage count, see below. */
+     ^
+./bcm2708.d/linux/mm_types.h:259:2: error: unknown type name 'atomic_t'
+  atomic_t nr_threads;
+  ^
+./bcm2708.d/linux/mm_types.h:291:2: error: unknown type name 'pgd_t'
+  pgd_t * pgd;
+  ^
+./bcm2708.d/linux/mm_types.h:292:2: error: unknown type name 'atomic_t'
+  atomic_t mm_users;   /* How many users with user space? */
+  ^
+./bcm2708.d/linux/mm_types.h:293:2: error: unknown type name 'atomic_t'
+  atomic_t mm_count;   /* How many references to "struct mm_struct" (users count as 1) */
+  ^
+./bcm2708.d/linux/mm_types.h:396:2: error: unknown type name 'bool'
+  bool tlb_flush_pending;
+  ^
+In file included from ./bcm2708.d/linux/gfp.h:4:0,
+                 from ./bcm2708.d/linux/mm.h:8,
+                 from ./bcm2708.d/linux/scatterlist.h:6,
+                 from ./bcm2708.d/asm/dma-mapping.h:5,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/mmzone.h:264:2: error: unknown type name 'bool'
+  bool   compact_blockskip_flush;
+  ^
+In file included from ./bcm2708.d/linux/notifier.h:5:0,
+                 from ./bcm2708.d/linux/memory_hotplug.h:6,
+                 from ./bcm2708.d/linux/mmzone.h:473,
+                 from ./bcm2708.d/linux/gfp.h:4,
+                 from ./bcm2708.d/linux/mm.h:8,
+                 from ./bcm2708.d/linux/scatterlist.h:6,
+                 from ./bcm2708.d/asm/dma-mapping.h:5,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/mutex.h:13:2: error: unknown type name 'atomic_t'
+  atomic_t  count;
+  ^
+In file included from ./bcm2708.d/linux/ktime.h:4:0,
+                 from ./bcm2708.d/linux/timer.h:5,
+                 from ./bcm2708.d/linux/workqueue.h:4,
+                 from ./bcm2708.d/linux/srcu.h:6,
+                 from ./bcm2708.d/linux/notifier.h:7,
+                 from ./bcm2708.d/linux/memory_hotplug.h:6,
+                 from ./bcm2708.d/linux/mmzone.h:473,
+                 from ./bcm2708.d/linux/gfp.h:4,
+                 from ./bcm2708.d/linux/mm.h:8,
+                 from ./bcm2708.d/linux/scatterlist.h:6,
+                 from ./bcm2708.d/asm/dma-mapping.h:5,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/time.h:20:1: error: unknown type name 'bool'
+ static inline bool timespec_valid(const struct timespec *ts)
+ ^
+./bcm2708.d/linux/time.h:31:1: error: unknown type name 'bool'
+ extern bool persistent_clock_exist;
+ ^
+In file included from ./bcm2708.d/linux/srcu.h:6:0,
+                 from ./bcm2708.d/linux/notifier.h:7,
+                 from ./bcm2708.d/linux/memory_hotplug.h:6,
+                 from ./bcm2708.d/linux/mmzone.h:473,
+                 from ./bcm2708.d/linux/gfp.h:4,
+                 from ./bcm2708.d/linux/mm.h:8,
+                 from ./bcm2708.d/linux/scatterlist.h:6,
+                 from ./bcm2708.d/asm/dma-mapping.h:5,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/workqueue.h:116:1: error: unknown type name 'bool'
+ extern bool queue_work_on(int cpu, struct workqueue_struct *wq,
+ ^
+./bcm2708.d/linux/workqueue.h:118:1: error: unknown type name 'bool'
+ extern bool queue_delayed_work_on(int cpu, struct workqueue_struct *wq,
+ ^
+./bcm2708.d/linux/workqueue.h:120:1: error: unknown type name 'bool'
+ extern bool mod_delayed_work_on(int cpu, struct workqueue_struct *wq,
+ ^
+./bcm2708.d/linux/workqueue.h:123:1: error: unknown type name 'bool'
+ extern bool flush_work(struct work_struct *work);
+ ^
+./bcm2708.d/linux/workqueue.h:125:1: error: unknown type name 'bool'
+ extern bool flush_delayed_work(struct delayed_work *dwork);
+ ^
+./bcm2708.d/linux/workqueue.h:127:1: error: unknown type name 'bool'
+ static inline bool queue_work(struct workqueue_struct *wq,
+ ^
+./bcm2708.d/linux/workqueue.h:133:1: error: unknown type name 'bool'
+ static inline bool queue_delayed_work(struct workqueue_struct *wq,
+ ^
+In file included from ./bcm2708.d/linux/notifier.h:7:0,
+                 from ./bcm2708.d/linux/memory_hotplug.h:6,
+                 from ./bcm2708.d/linux/mmzone.h:473,
+                 from ./bcm2708.d/linux/gfp.h:4,
+                 from ./bcm2708.d/linux/mm.h:8,
+                 from ./bcm2708.d/linux/scatterlist.h:6,
+                 from ./bcm2708.d/asm/dma-mapping.h:5,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/srcu.h:21:2: error: unknown type name 'bool'
+  bool running;
+  ^
+In file included from ./bcm2708.d/linux/atomic.h:4:0,
+                 from ./bcm2708.d/linux/spinlock.h:122,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/mm.h: In function 'page_mapcount':
+./bcm2708.d/asm/atomic.h:10:46: error: request for member 'counter' in something not a structure or union
+ #define atomic_read(v) (*(volatile int *)&(v)->counter)
+                                              ^
+./bcm2708.d/linux/mm.h:137:9: note: in expansion of macro 'atomic_read'
+  return atomic_read(&(page)->_mapcount) + 1;
+         ^
+In file included from ./bcm2708.d/linux/scatterlist.h:6:0,
+                 from ./bcm2708.d/asm/dma-mapping.h:5,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/mm.h: At top level:
+./bcm2708.d/linux/mm.h:140:1: error: unknown type name 'bool'
+ extern bool __get_page_tail(struct page *page);
+ ^
+In file included from ./bcm2708.d/linux/atomic.h:4:0,
+                 from ./bcm2708.d/linux/spinlock.h:122,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/mm.h: In function 'init_page_count':
+./bcm2708.d/asm/atomic.h:11:30: error: request for member 'counter' in something not a structure or union
+ #define atomic_set(v,i) (((v)->counter) = (i))
+                              ^
+./bcm2708.d/linux/mm.h:144:2: note: in expansion of macro 'atomic_set'
+  atomic_set(&page->_count, 1);
+  ^
+./bcm2708.d/linux/mm.h: In function 'PageBuddy':
+./bcm2708.d/asm/atomic.h:10:46: error: request for member 'counter' in something not a structure or union
+ #define atomic_read(v) (*(volatile int *)&(v)->counter)
+                                              ^
+./bcm2708.d/linux/mm.h:151:9: note: in expansion of macro 'atomic_read'
+  return atomic_read(&page->_mapcount) == PAGE_BUDDY_MAPCOUNT_VALUE;
+         ^
+In file included from ./bcm2708.d/asm/dma-mapping.h:7:0,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/dma-debug.h: At top level:
+./bcm2708.d/linux/dma-debug.h:13:11: error: unknown type name 'bool'
+           bool map_single)
+           ^
+./bcm2708.d/linux/dma-debug.h:24:6: error: unknown type name 'bool'
+      bool map_single)
+      ^
+In file included from ./bcm2708.d/linux/kobject.h:9:0,
+                 from ./bcm2708.d/linux/device.h:7,
+                 from ./bcm2708.d/asm/dma-mapping.h:11,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/kref.h:11:2: error: unknown type name 'atomic_t'
+  atomic_t refcount;
+  ^
+In file included from ./bcm2708.d/linux/device.h:15:0,
+                 from ./bcm2708.d/asm/dma-mapping.h:11,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/pm.h:62:2: error: unknown type name 'bool'
+  bool   is_prepared:1; /* Owned by the PM core */
+  ^
+./bcm2708.d/linux/pm.h:63:2: error: unknown type name 'bool'
+  bool   is_suspended:1; /* Ditto */
+  ^
+./bcm2708.d/linux/pm.h:64:2: error: unknown type name 'bool'
+  bool   ignore_children:1;
+  ^
+./bcm2708.d/linux/pm.h:65:2: error: unknown type name 'bool'
+  bool   early_init:1; /* Owned by the PM core */
+  ^
+./bcm2708.d/linux/pm.h:71:2: error: unknown type name 'bool'
+  bool   wakeup_path:1;
+  ^
+./bcm2708.d/linux/pm.h:72:2: error: unknown type name 'bool'
+  bool   syscore:1;
+  ^
+In file included from ./bcm2708.d/linux/device.h:18:0,
+                 from ./bcm2708.d/asm/dma-mapping.h:11,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/uidgid.h:29:1: error: unknown type name 'bool'
+ static inline bool uid_eq(kuid_t left, kuid_t right)
+ ^
+./bcm2708.d/linux/uidgid.h:34:1: error: unknown type name 'bool'
+ static inline bool gid_eq(kgid_t left, kgid_t right)
+ ^
+In file included from ./bcm2708.d/asm/dma-mapping.h:11:0,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/device.h:71:2: error: unknown type name 'bool'
+  bool suppress_bind_attrs; /* disables bind/unbind via sysfs */
+  ^
+In file included from ./bcm2708.d/linux/device.h:230:0,
+                 from ./bcm2708.d/asm/dma-mapping.h:11,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/pm_wakeup.h:22:2: error: unknown type name 'bool'
+  bool   active:1;
+  ^
+./bcm2708.d/linux/pm_wakeup.h:23:2: error: unknown type name 'bool'
+  bool   autosleep_enabled:1;
+  ^
+In file included from bcm2708.dummy.c:6:0:
+./bcm2708.d/mach/dma.h:73:1: error: unknown type name 'bool'
+ extern bool bcm_dma_is_busy(void __iomem *dma_chan_base);
+ ^
+In file included from ./bcm2708.d/linux/fs.h:7:0,
+                 from ./bcm2708.d/linux/debugfs.h:4,
+                 from bcm2708.dummy.c:13:
+./bcm2708.d/linux/dcache.h:78:35: error: unknown type name 'bool'
+  int (*d_manage)(struct dentry *, bool);
+                                   ^
+./bcm2708.d/linux/dcache.h:79:1: warning: no semicolon at end of struct or union [enabled by default]
+ } ____cacheline_aligned;
+ ^
+In file included from ./bcm2708.d/linux/fs.h:15:0,
+                 from ./bcm2708.d/linux/debugfs.h:4,
+                 from bcm2708.dummy.c:13:
+./bcm2708.d/linux/pid.h:23:2: error: unknown type name 'atomic_t'
+  atomic_t count;
+  ^
+In file included from ./bcm2708.d/linux/fs.h:28:0,
+                 from ./bcm2708.d/linux/debugfs.h:4,
+                 from bcm2708.dummy.c:13:
+./bcm2708.d/linux/blk_types.h:69:2: error: unknown type name 'atomic_t'
+  atomic_t  bi_cnt;  /* pin count */
+  ^
+In file included from ./bcm2708.d/linux/debugfs.h:4:0,
+                 from bcm2708.dummy.c:13:
+./bcm2708.d/linux/fs.h:53:4: error: unknown type name 'bool'
+    bool is_async);
+    ^
+In file included from ./bcm2708.d/linux/quota.h:17:0,
+                 from ./bcm2708.d/linux/fs.h:73,
+                 from ./bcm2708.d/linux/debugfs.h:4,
+                 from bcm2708.dummy.c:13:
+./bcm2708.d/linux/projid.h:23:1: error: unknown type name 'bool'
+ static inline bool projid_eq(kprojid_t left, kprojid_t right)
+ ^
+In file included from ./bcm2708.d/linux/fs.h:73:0,
+                 from ./bcm2708.d/linux/debugfs.h:4,
+                 from bcm2708.dummy.c:13:
+./bcm2708.d/linux/quota.h:95:2: error: unknown type name 'atomic_t'
+  atomic_t dq_count;  /* Use count */
+  ^
+In file included from ./bcm2708.d/linux/debugfs.h:4:0,
+                 from bcm2708.dummy.c:13:
+./bcm2708.d/linux/fs.h:176:2: error: unknown type name 'bool'
+  bool   bd_write_holder;
+  ^
+./bcm2708.d/linux/fs.h:267:2: error: unknown type name 'atomic_t'
+  atomic_t  i_count;
+  ^
+./bcm2708.d/linux/fs.h:268:2: error: unknown type name 'atomic_t'
+  atomic_t  i_dio_count;
+  ^
+./bcm2708.d/linux/fs.h:269:2: error: unknown type name 'atomic_t'
+  atomic_t  i_writecount;
+  ^
+In file included from ./bcm2708.d/linux/debugfs.h:4:0,
+                 from bcm2708.dummy.c:13:
+./bcm2708.d/linux/fs.h:471:2: error: unknown type name 'atomic_t'
+  atomic_t  s_active;
+  ^
+./bcm2708.d/linux/fs.h:547:57: error: unknown type name 'bool'
+ int __sb_start_write(struct super_block *sb, int level, bool wait);
+                                                         ^
+./bcm2708.d/linux/fs.h:599:58: error: unknown type name 'bool'
+  int (*create) (struct inode *,struct dentry *, umode_t, bool);
+                                                          ^
+./bcm2708.d/linux/fs.h:740:48: error: unknown type name 'dio_iodone_t'
+  unsigned long nr_segs, get_block_t get_block, dio_iodone_t end_io,
+                                                ^
+In file included from ./bcm2708.d/linux/cred.h:6:0,
+                 from ./bcm2708.d/linux/sched.h:46,
+                 from ./bcm2708.d/linux/ptrace.h:5,
+                 from ./bcm2708.d/asm/kgdb.h:4,
+                 from ./bcm2708.d/linux/kgdb.h:8,
+                 from ./bcm2708.d/linux/fb.h:4,
+                 from bcm2708.dummy.c:15:
+./bcm2708.d/linux/key.h:37:2: error: unknown type name 'atomic_t'
+  atomic_t  usage;  /* number of references */
+  ^
+In file included from ./bcm2708.d/linux/sched.h:46:0,
+                 from ./bcm2708.d/linux/ptrace.h:5,
+                 from ./bcm2708.d/asm/kgdb.h:4,
+                 from ./bcm2708.d/linux/kgdb.h:8,
+                 from ./bcm2708.d/linux/fb.h:4,
+                 from bcm2708.dummy.c:15:
+./bcm2708.d/linux/cred.h:18:2: error: unknown type name 'atomic_t'
+  atomic_t usage;
+  ^
+./bcm2708.d/linux/cred.h:26:2: error: unknown type name 'atomic_t'
+  atomic_t usage;
+  ^
+In file included from ./bcm2708.d/linux/ptrace.h:5:0,
+                 from ./bcm2708.d/asm/kgdb.h:4,
+                 from ./bcm2708.d/linux/kgdb.h:8,
+                 from ./bcm2708.d/linux/fb.h:4,
+                 from bcm2708.dummy.c:15:
+./bcm2708.d/linux/sched.h:92:2: error: unknown type name 'atomic_t'
+  atomic_t  count;
+  ^
+./bcm2708.d/linux/sched.h:134:2: error: unknown type name 'atomic_t'
+  atomic_t  sigcnt;
+  ^
+./bcm2708.d/linux/sched.h:135:2: error: unknown type name 'atomic_t'
+  atomic_t  live;
+  ^
+./bcm2708.d/linux/sched.h:283:2: error: unknown type name 'atomic_t'
+  atomic_t __count; /* reference count */
+  ^
+./bcm2708.d/linux/sched.h:284:2: error: unknown type name 'atomic_t'
+  atomic_t processes; /* How many processes does this user have? */
+  ^
+./bcm2708.d/linux/sched.h:285:2: error: unknown type name 'atomic_t'
+  atomic_t files;  /* How many open files does this user have? */
+  ^
+./bcm2708.d/linux/sched.h:286:2: error: unknown type name 'atomic_t'
+  atomic_t sigpending; /* How many pending signals does this user have? */
+  ^
+./bcm2708.d/linux/sched.h:288:2: error: unknown type name 'atomic_t'
+  atomic_t inotify_watches; /* How many inotify watches does this user have? */
+  ^
+./bcm2708.d/linux/sched.h:289:2: error: unknown type name 'atomic_t'
+  atomic_t inotify_devs; /* How many inotify devs does this user have opened? */
+  ^
+./bcm2708.d/linux/sched.h:292:2: error: unknown type name 'atomic_t'
+  atomic_t fanotify_listeners;
+  ^
+./bcm2708.d/linux/sched.h:470:2: error: unknown type name 'atomic_t'
+  atomic_t usage;
+  ^
+./bcm2708.d/linux/sched.h:843:2: error: unknown type name 'atomic_t'
+  atomic_t ptrace_bp_refcnt;
+  ^
+./bcm2708.d/linux/sched.h:880:1: error: unknown type name 'bool'
+ extern bool task_set_jobctl_pending(struct task_struct *task,
+ ^
+In file included from ./bcm2708.d/asm/kgdb.h:4:0,
+                 from ./bcm2708.d/linux/kgdb.h:8,
+                 from ./bcm2708.d/linux/fb.h:4,
+                 from bcm2708.dummy.c:15:
+./bcm2708.d/linux/ptrace.h:28:1: error: unknown type name 'bool'
+ static inline bool ptrace_event_enabled(struct task_struct *task, int event)
+ ^
+In file included from bcm2708.dummy.c:15:0:
+./bcm2708.d/linux/fb.h:164:2: error: unknown type name 'atomic_t'
+  atomic_t count;
+  ^
+./bcm2708.d/linux/fb.h:221:2: error: unknown type name 'bool'
+  bool skip_vt_switch; /* no VT switch on suspend/resume required */
+  ^
+In file included from bcm2708.dummy.c:16:0:
+./bcm2708.d/linux/interrupt.h:59:2: error: unknown type name 'atomic_t'
+  atomic_t count;
+  ^
+In file included from bcm2708.dummy.c:18:0:
+./bcm2708.d/linux/platform_device.h:12:2: error: unknown type name 'bool'
+  bool  id_auto;
+  ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:4:0,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/libs/types.h:88:0: warning: "offsetof" redefined [enabled by default]
+ #define offsetof(type, member)                                      \
+ ^
+In file included from ./bcm2708.d/uapi/linux/posix_types.h:4:0,
+                 from ./bcm2708.d/uapi/linux/types.h:6,
+                 from ./bcm2708.d/linux/types.h:4,
+                 from ./bcm2708.d/linux/mm_types.h:5,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/stddef.h:13:0: note: this is the location of the previous definition
+ #define offsetof(TYPE,MEMBER) __compiler_offsetof(TYPE,MEMBER)
+ ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/arm.h:5:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/sync/sync.h:4,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:5,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/memlayout_common.h:25,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/mach-raspberrypi/memlayout.h:124,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:6,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/div64.h:32:0: warning: "__do_div_asm" redefined [enabled by default]
+ #define __do_div_asm(n, base)                                   \
+ ^
+In file included from ./bcm2708.d/linux/kernel.h:29:0,
+                 from ./bcm2708.d/asm-generic/bug.h:8,
+                 from ./bcm2708.d/asm/bug.h:27,
+                 from ./bcm2708.d/linux/bug.h:4,
+                 from ./bcm2708.d/linux/thread_info.h:5,
+                 from ./bcm2708.d/linux/preempt.h:4,
+                 from ./bcm2708.d/linux/spinlock.h:7,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/asm/div64.h:9:0: note: this is the location of the previous definition
+ #define __do_div_asm(n, base)     \
+ ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/arm.h:5:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/sync/sync.h:4,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:5,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/memlayout_common.h:25,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/mach-raspberrypi/memlayout.h:124,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:6,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/div64.h:50:0: warning: "do_div" redefined [enabled by default]
+ #define do_div(n, base) __do_div_asm(n, base)
+ ^
+In file included from ./bcm2708.d/linux/kernel.h:29:0,
+                 from ./bcm2708.d/asm-generic/bug.h:8,
+                 from ./bcm2708.d/asm/bug.h:27,
+                 from ./bcm2708.d/linux/bug.h:4,
+                 from ./bcm2708.d/linux/thread_info.h:5,
+                 from ./bcm2708.d/linux/preempt.h:4,
+                 from ./bcm2708.d/linux/spinlock.h:7,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/asm/div64.h:29:0: note: this is the location of the previous definition
+ #define do_div(n, base)       \
+ ^
+In file included from ./bcm2708.d/linux/string.h:10:0,
+                 from ./bcm2708.d/linux/dynamic_debug.h:4,
+                 from ./bcm2708.d/linux/kernel.h:15,
+                 from ./bcm2708.d/asm-generic/bug.h:8,
+                 from ./bcm2708.d/asm/bug.h:27,
+                 from ./bcm2708.d/linux/bug.h:4,
+                 from ./bcm2708.d/linux/thread_info.h:5,
+                 from ./bcm2708.d/linux/preempt.h:4,
+                 from ./bcm2708.d/linux/spinlock.h:7,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/asm/string.h:23:3: error: expected identifier or '(' before '{' token
+  ({        \
+   ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/libs/string.h:22:7: note: in expansion of macro 'memset'
+ void *memset(void *s, char c, size_t n);
+       ^
+In file included from ./bcm2708.d/linux/atomic.h:4:0,
+                 from ./bcm2708.d/linux/spinlock.h:122,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/asm/atomic.h:10:27: error: expected identifier or '(' before 'volatile'
+ #define atomic_read(v) (*(volatile int *)&(v)->counter)
+                           ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:20:19: note: in expansion of macro 'atomic_read'
+ static inline int atomic_read(const atomic_t * v)
+                   ^
+./bcm2708.d/asm/atomic.h:10:42: error: expected ')' before '&' token
+ #define atomic_read(v) (*(volatile int *)&(v)->counter)
+                                          ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:20:19: note: in expansion of macro 'atomic_read'
+ static inline int atomic_read(const atomic_t * v)
+                   ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:22:40: error: expected ')' before '*' token
+ static inline void atomic_set(atomic_t * v, int i)
+                                        ^
+./bcm2708.d/asm/atomic.h:11:28: note: in definition of macro 'atomic_set'
+ #define atomic_set(v,i) (((v)->counter) = (i))
+                            ^
+./bcm2708.d/asm/atomic.h:11:30: error: expected ')' before '->' token
+ #define atomic_set(v,i) (((v)->counter) = (i))
+                              ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:22:20: note: in expansion of macro 'atomic_set'
+ static inline void atomic_set(atomic_t * v, int i)
+                    ^
+./bcm2708.d/asm/atomic.h:11:41: error: expected ')' before '=' token
+ #define atomic_set(v,i) (((v)->counter) = (i))
+                                         ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:22:20: note: in expansion of macro 'atomic_set'
+ static inline void atomic_set(atomic_t * v, int i)
+                    ^
+./bcm2708.d/asm/atomic.h:25:27: error: expected identifier or '(' before 'void'
+ #define atomic_add(i, v) (void) atomic_add_return(i, v)
+                           ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:24:20: note: in expansion of macro 'atomic_add'
+ static inline void atomic_add(atomic_t * v, int i)
+                    ^
+./bcm2708.d/asm/atomic.h:39:27: error: expected identifier or '(' before 'void'
+ #define atomic_sub(i, v) (void) atomic_sub_return(i, v)
+                           ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:26:20: note: in expansion of macro 'atomic_sub'
+ static inline void atomic_sub(atomic_t * v, int i)
+                    ^
+./bcm2708.d/asm/atomic.h:25:27: error: expected identifier or '(' before 'void'
+ #define atomic_add(i, v) (void) atomic_add_return(i, v)
+                           ^
+./bcm2708.d/asm/atomic.h:65:24: note: in expansion of macro 'atomic_add'
+ #define atomic_inc(v)  atomic_add(1, v)
+                        ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:30:20: note: in expansion of macro 'atomic_inc'
+ static inline void atomic_inc(atomic_t * v) __attribute__ ((always_inline));
+                    ^
+./bcm2708.d/asm/atomic.h:39:27: error: expected identifier or '(' before 'void'
+ #define atomic_sub(i, v) (void) atomic_sub_return(i, v)
+                           ^
+./bcm2708.d/asm/atomic.h:66:24: note: in expansion of macro 'atomic_sub'
+ #define atomic_dec(v)  atomic_sub(1, v)
+                        ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:31:20: note: in expansion of macro 'atomic_dec'
+ static inline void atomic_dec(atomic_t * v) __attribute__ ((always_inline));
+                    ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/memlayout_common.h:25:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/mach-raspberrypi/memlayout.h:124,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:6,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:36:19: error: static declaration of 'atomic_add_return' follows non-static declaration
+ static inline int atomic_add_return(atomic_t * v, int i)
+                   ^
+In file included from ./bcm2708.d/linux/atomic.h:4:0,
+                 from ./bcm2708.d/linux/spinlock.h:122,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/asm/atomic.h:25:33: note: previous implicit declaration of 'atomic_add_return' was here
+ #define atomic_add(i, v) (void) atomic_add_return(i, v)
+                                 ^
+./bcm2708.d/asm/atomic.h:65:24: note: in expansion of macro 'atomic_add'
+ #define atomic_inc(v)  atomic_add(1, v)
+                        ^
+./bcm2708.d/asm-generic/atomic-long.h:19:2: note: in expansion of macro 'atomic_inc'
+  atomic_inc(v);
+  ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/memlayout_common.h:25:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/mach-raspberrypi/memlayout.h:124,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:6,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:38:19: error: static declaration of 'atomic_sub_return' follows non-static declaration
+ static inline int atomic_sub_return(atomic_t * v, int i)
+                   ^
+In file included from ./bcm2708.d/linux/atomic.h:4:0,
+                 from ./bcm2708.d/linux/spinlock.h:122,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/asm/atomic.h:39:33: note: previous implicit declaration of 'atomic_sub_return' was here
+ #define atomic_sub(i, v) (void) atomic_sub_return(i, v)
+                                 ^
+./bcm2708.d/asm/atomic.h:66:24: note: in expansion of macro 'atomic_sub'
+ #define atomic_dec(v)  atomic_sub(1, v)
+                        ^
+./bcm2708.d/asm-generic/atomic-long.h:26:2: note: in expansion of macro 'atomic_dec'
+  atomic_dec(v);
+  ^
+./bcm2708.d/asm/atomic.h:10:27: error: expected identifier or '(' before 'volatile'
+ #define atomic_read(v) (*(volatile int *)&(v)->counter)
+                           ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:47:19: note: in expansion of macro 'atomic_read'
+ static inline int atomic_read(const atomic_t * v)
+                   ^
+./bcm2708.d/asm/atomic.h:10:42: error: expected ')' before '&' token
+ #define atomic_read(v) (*(volatile int *)&(v)->counter)
+                                          ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:47:19: note: in expansion of macro 'atomic_read'
+ static inline int atomic_read(const atomic_t * v)
+                   ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:59:40: error: expected ')' before '*' token
+ static inline void atomic_set(atomic_t * v, int i)
+                                        ^
+./bcm2708.d/asm/atomic.h:11:28: note: in definition of macro 'atomic_set'
+ #define atomic_set(v,i) (((v)->counter) = (i))
+                            ^
+./bcm2708.d/asm/atomic.h:11:30: error: expected ')' before '->' token
+ #define atomic_set(v,i) (((v)->counter) = (i))
+                              ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:59:20: note: in expansion of macro 'atomic_set'
+ static inline void atomic_set(atomic_t * v, int i)
+                    ^
+./bcm2708.d/asm/atomic.h:11:41: error: expected ')' before '=' token
+ #define atomic_set(v,i) (((v)->counter) = (i))
+                                         ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:59:20: note: in expansion of macro 'atomic_set'
+ static inline void atomic_set(atomic_t * v, int i)
+                    ^
+./bcm2708.d/asm/atomic.h:25:27: error: expected identifier or '(' before 'void'
+ #define atomic_add(i, v) (void) atomic_add_return(i, v)
+                           ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:71:20: note: in expansion of macro 'atomic_add'
+ static inline void atomic_add(atomic_t * v, int i)
+                    ^
+./bcm2708.d/asm/atomic.h:39:27: error: expected identifier or '(' before 'void'
+ #define atomic_sub(i, v) (void) atomic_sub_return(i, v)
+                           ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:84:20: note: in expansion of macro 'atomic_sub'
+ static inline void atomic_sub(atomic_t * v, int i)
+                    ^
+./bcm2708.d/asm/atomic.h:25:27: error: expected identifier or '(' before 'void'
+ #define atomic_add(i, v) (void) atomic_add_return(i, v)
+                           ^
+./bcm2708.d/asm/atomic.h:65:24: note: in expansion of macro 'atomic_add'
+ #define atomic_inc(v)  atomic_add(1, v)
+                        ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:115:20: note: in expansion of macro 'atomic_inc'
+ static inline void atomic_inc(atomic_t * v)
+                    ^
+./bcm2708.d/asm/atomic.h:39:27: error: expected identifier or '(' before 'void'
+ #define atomic_sub(i, v) (void) atomic_sub_return(i, v)
+                           ^
+./bcm2708.d/asm/atomic.h:66:24: note: in expansion of macro 'atomic_sub'
+ #define atomic_dec(v)  atomic_sub(1, v)
+                        ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:126:20: note: in expansion of macro 'atomic_dec'
+ static inline void atomic_dec(atomic_t * v)
+                    ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/memlayout_common.h:25:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/mach-raspberrypi/memlayout.h:124,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:6,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h: In function 'atomic_inc_test_zero':
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:143:2: warning: passing argument 1 of 'atomic_add_return' makes pointer from integer without a cast [enabled by default]
+  atomic_inc(v);
+  ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:36:19: note: expected 'struct atomic_t *' but argument is of type 'int'
+ static inline int atomic_add_return(atomic_t * v, int i)
+                   ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:143:2: warning: passing argument 2 of 'atomic_add_return' makes integer from pointer without a cast [enabled by default]
+  atomic_inc(v);
+  ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:36:19: note: expected 'int' but argument is of type 'struct atomic_t *'
+ static inline int atomic_add_return(atomic_t * v, int i)
+                   ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h: In function 'atomic_dec_test_zero':
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:162:2: warning: passing argument 1 of 'atomic_sub_return' makes pointer from integer without a cast [enabled by default]
+  atomic_dec(v);
+  ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:38:19: note: expected 'struct atomic_t *' but argument is of type 'int'
+ static inline int atomic_sub_return(atomic_t * v, int i)
+                   ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:162:2: warning: passing argument 2 of 'atomic_sub_return' makes integer from pointer without a cast [enabled by default]
+  atomic_dec(v);
+  ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:38:19: note: expected 'int' but argument is of type 'struct atomic_t *'
+ static inline int atomic_sub_return(atomic_t * v, int i)
+                   ^
+In file included from ./bcm2708.d/linux/bitops.h:17:0,
+                 from ./bcm2708.d/linux/kernel.h:11,
+                 from ./bcm2708.d/asm-generic/bug.h:8,
+                 from ./bcm2708.d/asm/bug.h:27,
+                 from ./bcm2708.d/linux/bug.h:4,
+                 from ./bcm2708.d/linux/thread_info.h:5,
+                 from ./bcm2708.d/linux/preempt.h:4,
+                 from ./bcm2708.d/linux/spinlock.h:7,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h: At top level:
+./bcm2708.d/asm/bitops.h:79:28: error: expected ')' before '?' token
+  (__builtin_constant_p(nr) ? ____atomic_##name(nr, p) : _##name(nr,p))
+                            ^
+./bcm2708.d/asm/bitops.h:81:25: note: in expansion of macro 'ATOMIC_BITOP'
+ #define set_bit(nr,p)   ATOMIC_BITOP(set_bit,nr,p)
+                         ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:202:20: note: in expansion of macro 'set_bit'
+ static inline void set_bit(int nr, volatile uint32_t * addr)
+                    ^
+./bcm2708.d/asm/bitops.h:79:28: error: expected ')' before '?' token
+  (__builtin_constant_p(nr) ? ____atomic_##name(nr, p) : _##name(nr,p))
+                            ^
+./bcm2708.d/asm/bitops.h:82:27: note: in expansion of macro 'ATOMIC_BITOP'
+ #define clear_bit(nr,p)   ATOMIC_BITOP(clear_bit,nr,p)
+                           ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:204:20: note: in expansion of macro 'clear_bit'
+ static inline void clear_bit(int nr, volatile uint32_t * addr)
+                    ^
+./bcm2708.d/asm/bitops.h:79:28: error: expected ')' before '?' token
+  (__builtin_constant_p(nr) ? ____atomic_##name(nr, p) : _##name(nr,p))
+                            ^
+./bcm2708.d/asm/bitops.h:84:33: note: in expansion of macro 'ATOMIC_BITOP'
+ #define test_and_set_bit(nr,p)  ATOMIC_BITOP(test_and_set_bit,nr,p)
+                                 ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:208:20: note: in expansion of macro 'test_and_set_bit'
+ static inline bool test_and_set_bit(int nr, volatile uint32_t * addr)
+                    ^
+./bcm2708.d/asm/bitops.h:79:28: error: expected ')' before '?' token
+  (__builtin_constant_p(nr) ? ____atomic_##name(nr, p) : _##name(nr,p))
+                            ^
+./bcm2708.d/asm/bitops.h:85:34: note: in expansion of macro 'ATOMIC_BITOP'
+ #define test_and_clear_bit(nr,p) ATOMIC_BITOP(test_and_clear_bit,nr,p)
+                                  ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:210:20: note: in expansion of macro 'test_and_clear_bit'
+ static inline bool test_and_clear_bit(int nr, volatile uint32_t * addr)
+                    ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/memlayout_common.h:25:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/mach-raspberrypi/memlayout.h:124,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:6,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:214:20: error: conflicting types for 'test_bit'
+ static inline bool test_bit(int nr, volatile uint32_t * addr)
+                    ^
+In file included from ./bcm2708.d/asm/bitops.h:65:0,
+                 from ./bcm2708.d/linux/bitops.h:17,
+                 from ./bcm2708.d/linux/kernel.h:11,
+                 from ./bcm2708.d/asm-generic/bug.h:8,
+                 from ./bcm2708.d/asm/bug.h:27,
+                 from ./bcm2708.d/linux/bug.h:4,
+                 from ./bcm2708.d/linux/thread_info.h:5,
+                 from ./bcm2708.d/linux/preempt.h:4,
+                 from ./bcm2708.d/linux/spinlock.h:7,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/asm-generic/bitops/non-atomic.h:42:19: note: previous definition of 'test_bit' was here
+ static inline int test_bit(int nr, const volatile unsigned long *addr)
+                   ^
+In file included from ./bcm2708.d/linux/bitops.h:17:0,
+                 from ./bcm2708.d/linux/kernel.h:11,
+                 from ./bcm2708.d/asm-generic/bug.h:8,
+                 from ./bcm2708.d/asm/bug.h:27,
+                 from ./bcm2708.d/linux/bug.h:4,
+                 from ./bcm2708.d/linux/thread_info.h:5,
+                 from ./bcm2708.d/linux/preempt.h:4,
+                 from ./bcm2708.d/linux/spinlock.h:7,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/asm/bitops.h:79:28: error: expected ')' before '?' token
+  (__builtin_constant_p(nr) ? ____atomic_##name(nr, p) : _##name(nr,p))
+                            ^
+./bcm2708.d/asm/bitops.h:81:25: note: in expansion of macro 'ATOMIC_BITOP'
+ #define set_bit(nr,p)   ATOMIC_BITOP(set_bit,nr,p)
+                         ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:225:20: note: in expansion of macro 'set_bit'
+ static inline void set_bit(int nr, volatile uint32_t * addr)
+                    ^
+./bcm2708.d/asm/bitops.h:79:28: error: expected ')' before '?' token
+  (__builtin_constant_p(nr) ? ____atomic_##name(nr, p) : _##name(nr,p))
+                            ^
+./bcm2708.d/asm/bitops.h:82:27: note: in expansion of macro 'ATOMIC_BITOP'
+ #define clear_bit(nr,p)   ATOMIC_BITOP(clear_bit,nr,p)
+                           ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:238:20: note: in expansion of macro 'clear_bit'
+ static inline void clear_bit(int nr, volatile uint32_t * addr)
+                    ^
+./bcm2708.d/asm/bitops.h:79:28: error: expected ')' before '?' token
+  (__builtin_constant_p(nr) ? ____atomic_##name(nr, p) : _##name(nr,p))
+                            ^
+./bcm2708.d/asm/bitops.h:84:33: note: in expansion of macro 'ATOMIC_BITOP'
+ #define test_and_set_bit(nr,p)  ATOMIC_BITOP(test_and_set_bit,nr,p)
+                                 ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:267:20: note: in expansion of macro 'test_and_set_bit'
+ static inline bool test_and_set_bit(int nr, volatile uint32_t * addr)
+                    ^
+./bcm2708.d/asm/bitops.h:79:28: error: expected ')' before '?' token
+  (__builtin_constant_p(nr) ? ____atomic_##name(nr, p) : _##name(nr,p))
+                            ^
+./bcm2708.d/asm/bitops.h:85:34: note: in expansion of macro 'ATOMIC_BITOP'
+ #define test_and_clear_bit(nr,p) ATOMIC_BITOP(test_and_clear_bit,nr,p)
+                                  ^
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/atomic.h:284:20: note: in expansion of macro 'test_and_clear_bit'
+ static inline bool test_and_clear_bit(int nr, volatile uint32_t * addr)
+                    ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/memlayout_common.h:26:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/mach-raspberrypi/memlayout.h:124,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:6,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/libs/list.h:25:20: error: conflicting types for 'list_add'
+ static inline void list_add(list_entry_t * listelm, list_entry_t * elm)
+                    ^
+In file included from ./bcm2708.d/linux/mm_types.h:7:0,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/list.h:27:20: note: previous definition of 'list_add' was here
+ static inline void list_add(struct list_head *new, struct list_head *head)
+                    ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/memlayout_common.h:26:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/mach-raspberrypi/memlayout.h:124,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:6,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/libs/list.h:31:20: error: conflicting types for 'list_del'
+ static inline void list_del(list_entry_t * listelm)
+                    ^
+In file included from ./bcm2708.d/linux/mm_types.h:7:0,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/list.h:48:20: note: previous definition of 'list_del' was here
+ static inline void list_del(struct list_head *entry)
+                    ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/memlayout_common.h:26:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/mach-raspberrypi/memlayout.h:124,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:6,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/libs/list.h:35:20: error: conflicting types for 'list_empty'
+ static inline bool list_empty(list_entry_t * list)
+                    ^
+In file included from ./bcm2708.d/linux/mm_types.h:7:0,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/list.h:71:19: note: previous definition of 'list_empty' was here
+ static inline int list_empty(const struct list_head *head)
+                   ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/memlayout_common.h:26:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/mach-raspberrypi/memlayout.h:124,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:6,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/libs/list.h:42:20: error: conflicting types for '__list_add'
+ static inline void __list_add(list_entry_t * elm, list_entry_t * prev,
+                    ^
+In file included from ./bcm2708.d/linux/mm_types.h:7:0,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/list.h:17:20: note: previous definition of '__list_add' was here
+ static inline void __list_add(struct list_head *new,
+                    ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/memlayout_common.h:26:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/mach-raspberrypi/memlayout.h:124,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:6,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/libs/list.h:45:20: error: conflicting types for '__list_del'
+ static inline void __list_del(list_entry_t * prev, list_entry_t * next)
+                    ^
+In file included from ./bcm2708.d/linux/mm_types.h:7:0,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/list.h:37:20: note: previous definition of '__list_del' was here
+ static inline void __list_del(struct list_head * prev, struct list_head * next)
+                    ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/process/proc.h:6:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:7,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/trap/trap.h:89:0: warning: "ARM_cpsr" redefined [enabled by default]
+ #define ARM_cpsr reg_r[16]
+ ^
+In file included from ./bcm2708.d/asm/ptrace.h:4:0,
+                 from ./bcm2708.d/asm/irqflags.h:4,
+                 from ./bcm2708.d/linux/irqflags.h:5,
+                 from ./bcm2708.d/asm/bitops.h:5,
+                 from ./bcm2708.d/linux/bitops.h:17,
+                 from ./bcm2708.d/linux/kernel.h:11,
+                 from ./bcm2708.d/asm-generic/bug.h:8,
+                 from ./bcm2708.d/asm/bug.h:27,
+                 from ./bcm2708.d/linux/bug.h:4,
+                 from ./bcm2708.d/linux/thread_info.h:5,
+                 from ./bcm2708.d/linux/preempt.h:4,
+                 from ./bcm2708.d/linux/spinlock.h:7,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/uapi/asm/ptrace.h:21:0: note: this is the location of the previous definition
+ #define ARM_cpsr uregs[16]
+ ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/process/proc.h:6:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:7,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/trap/trap.h:92:0: warning: "ARM_sp" redefined [enabled by default]
+ #define ARM_sp  reg_r[13]
+ ^
+In file included from ./bcm2708.d/asm/ptrace.h:4:0,
+                 from ./bcm2708.d/asm/irqflags.h:4,
+                 from ./bcm2708.d/linux/irqflags.h:5,
+                 from ./bcm2708.d/asm/bitops.h:5,
+                 from ./bcm2708.d/linux/bitops.h:17,
+                 from ./bcm2708.d/linux/kernel.h:11,
+                 from ./bcm2708.d/asm-generic/bug.h:8,
+                 from ./bcm2708.d/asm/bug.h:27,
+                 from ./bcm2708.d/linux/bug.h:4,
+                 from ./bcm2708.d/linux/thread_info.h:5,
+                 from ./bcm2708.d/linux/preempt.h:4,
+                 from ./bcm2708.d/linux/spinlock.h:7,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/uapi/asm/ptrace.h:23:0: note: this is the location of the previous definition
+ #define ARM_sp  uregs[13]
+ ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/process/proc.h:6:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:7,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/trap/trap.h:105:0: warning: "ARM_r0" redefined [enabled by default]
+ #define ARM_r0  reg_r[0]
+ ^
+In file included from ./bcm2708.d/asm/ptrace.h:4:0,
+                 from ./bcm2708.d/asm/irqflags.h:4,
+                 from ./bcm2708.d/linux/irqflags.h:5,
+                 from ./bcm2708.d/asm/bitops.h:5,
+                 from ./bcm2708.d/linux/bitops.h:17,
+                 from ./bcm2708.d/linux/kernel.h:11,
+                 from ./bcm2708.d/asm-generic/bug.h:8,
+                 from ./bcm2708.d/asm/bug.h:27,
+                 from ./bcm2708.d/linux/bug.h:4,
+                 from ./bcm2708.d/linux/thread_info.h:5,
+                 from ./bcm2708.d/linux/preempt.h:4,
+                 from ./bcm2708.d/linux/spinlock.h:7,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/uapi/asm/ptrace.h:25:0: note: this is the location of the previous definition
+ #define ARM_r0  uregs[0]
+ ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/process/proc.h:6:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:7,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/trap/trap.h:106:0: warning: "ARM_ORIG_r0" redefined [enabled by default]
+ #define ARM_ORIG_r0 reg_r[17]
+ ^
+In file included from ./bcm2708.d/asm/ptrace.h:4:0,
+                 from ./bcm2708.d/asm/irqflags.h:4,
+                 from ./bcm2708.d/linux/irqflags.h:5,
+                 from ./bcm2708.d/asm/bitops.h:5,
+                 from ./bcm2708.d/linux/bitops.h:17,
+                 from ./bcm2708.d/linux/kernel.h:11,
+                 from ./bcm2708.d/asm-generic/bug.h:8,
+                 from ./bcm2708.d/asm/bug.h:27,
+                 from ./bcm2708.d/linux/bug.h:4,
+                 from ./bcm2708.d/linux/thread_info.h:5,
+                 from ./bcm2708.d/linux/preempt.h:4,
+                 from ./bcm2708.d/linux/spinlock.h:7,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/uapi/asm/ptrace.h:26:0: note: this is the location of the previous definition
+ #define ARM_ORIG_r0 uregs[17]
+ ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/sync/wait.h:5:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/sync/sem.h:6,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/process/proc.h:9,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:7,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/spinlock.h:9:21: error: conflicting types for 'spinlock_t'
+ typedef spinlock_s *spinlock_t;
+                     ^
+In file included from ./bcm2708.d/linux/spinlock.h:17:0,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/spinlock_types.h:49:3: note: previous declaration of 'spinlock_t' was here
+ } spinlock_t;
+   ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/sync/wait.h:5:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/sync/sem.h:6,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/process/proc.h:9,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:7,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/spinlock.h:25:0: warning: "spin_lock_irqsave" redefined [enabled by default]
+ #define spin_lock_irqsave(lock, x)      do { x = __intr_save();spinlock_acquire(lock); } while (0)
+ ^
+In file included from ./bcm2708.d/linux/mm_types.h:8:0,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/spinlock.h:90:0: note: this is the location of the previous definition
+ #define spin_lock_irqsave(lock, flags)    \
+ ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/sync/sem.h:6:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/process/proc.h:9,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:7,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/sync/wait.h:11:3: error: conflicting types for 'wait_queue_t'
+ } wait_queue_t;
+   ^
+In file included from ./bcm2708.d/linux/completion.h:4:0,
+                 from ./bcm2708.d/linux/mm_types.h:11,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/wait.h:10:29: note: previous declaration of 'wait_queue_t' was here
+ typedef struct __wait_queue wait_queue_t;
+                             ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/numa/mp.h:6:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/process/proc.h:11,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:7,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/numa/percpu.h:50:0: warning: "per_cpu_ptr" redefined [enabled by default]
+ #define per_cpu_ptr(var, id) (&per_cpu(var,id))
+ ^
+In file included from ./bcm2708.d/linux/topology.h:8:0,
+                 from ./bcm2708.d/linux/gfp.h:7,
+                 from ./bcm2708.d/linux/mm.h:8,
+                 from ./bcm2708.d/linux/scatterlist.h:6,
+                 from ./bcm2708.d/asm/dma-mapping.h:5,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/percpu.h:12:0: note: this is the location of the previous definition
+ #define per_cpu_ptr(ptr, cpu) ({ (void)(cpu); VERIFY_PERCPU_PTR((ptr)); })
+ ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/process/signal.h:6:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/process/proc.h:14,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:7,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/libs/signum.h:46:0: warning: "_NSIG" redefined [enabled by default]
+ #define _NSIG  65 /* Biggest signal number + 1
+ ^
+In file included from ./bcm2708.d/uapi/linux/signal.h:4:0,
+                 from ./bcm2708.d/linux/signal.h:5,
+                 from ./bcm2708.d/linux/sched.h:27,
+                 from ./bcm2708.d/linux/ptrace.h:5,
+                 from ./bcm2708.d/asm/kgdb.h:4,
+                 from ./bcm2708.d/linux/kgdb.h:8,
+                 from ./bcm2708.d/linux/fb.h:4,
+                 from bcm2708.dummy.c:15:
+./bcm2708.d/asm/signal.h:6:0: note: this is the location of the previous definition
+ #define _NSIG  64
+ ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/process/signal.h:6:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/process/proc.h:14,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:7,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/libs/signum.h:82:18: error: conflicting types for 'sigset_t'
+ typedef uint64_t sigset_t;
+                  ^
+In file included from ./bcm2708.d/uapi/linux/signal.h:4:0,
+                 from ./bcm2708.d/linux/signal.h:5,
+                 from ./bcm2708.d/linux/sched.h:27,
+                 from ./bcm2708.d/linux/ptrace.h:5,
+                 from ./bcm2708.d/asm/kgdb.h:4,
+                 from ./bcm2708.d/linux/kgdb.h:8,
+                 from ./bcm2708.d/linux/fb.h:4,
+                 from bcm2708.dummy.c:15:
+./bcm2708.d/asm/signal.h:12:3: note: previous declaration of 'sigset_t' was here
+ } sigset_t;
+   ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/process/signal.h:6:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/process/proc.h:14,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:7,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/libs/signum.h:111:8: error: redefinition of 'struct sigaction'
+ struct sigaction {
+        ^
+In file included from ./bcm2708.d/linux/sched.h:27:0,
+                 from ./bcm2708.d/linux/ptrace.h:5,
+                 from ./bcm2708.d/asm/kgdb.h:4,
+                 from ./bcm2708.d/linux/kgdb.h:8,
+                 from ./bcm2708.d/linux/fb.h:4,
+                 from bcm2708.dummy.c:15:
+./bcm2708.d/linux/signal.h:108:8: note: originally defined here
+ struct sigaction {
+        ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/process/proc.h:14:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:7,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/process/signal.h:32:8: error: redefinition of 'struct sigpending'
+ struct sigpending {
+        ^
+In file included from ./bcm2708.d/linux/sched.h:27:0,
+                 from ./bcm2708.d/linux/ptrace.h:5,
+                 from ./bcm2708.d/asm/kgdb.h:4,
+                 from ./bcm2708.d/linux/kgdb.h:8,
+                 from ./bcm2708.d/linux/fb.h:4,
+                 from bcm2708.dummy.c:15:
+./bcm2708.d/linux/signal.h:9:8: note: originally defined here
+ struct sigpending {
+        ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/process/proc.h:14:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:7,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/process/signal.h:49:8: error: redefinition of 'struct signal_struct'
+ struct signal_struct {
+        ^
+In file included from ./bcm2708.d/linux/cred.h:6:0,
+                 from ./bcm2708.d/linux/sched.h:46,
+                 from ./bcm2708.d/linux/ptrace.h:5,
+                 from ./bcm2708.d/asm/kgdb.h:4,
+                 from ./bcm2708.d/linux/kgdb.h:8,
+                 from ./bcm2708.d/linux/fb.h:4,
+                 from bcm2708.dummy.c:15:
+./bcm2708.d/linux/key.h:22:8: note: originally defined here
+ struct signal_struct;
+        ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/process/proc.h:14:0,
+                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:7,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/process/signal.h:56:8: error: redefinition of 'struct sighand_struct'
+ struct sighand_struct {
+        ^
+In file included from ./bcm2708.d/linux/ptrace.h:5:0,
+                 from ./bcm2708.d/asm/kgdb.h:4,
+                 from ./bcm2708.d/linux/kgdb.h:8,
+                 from ./bcm2708.d/linux/fb.h:4,
+                 from bcm2708.dummy.c:15:
+./bcm2708.d/linux/sched.h:91:8: note: originally defined here
+ struct sighand_struct {
+        ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:7:0,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/process/proc.h:104:0: warning: "TIF_SIGPENDING" redefined [enabled by default]
+ #define TIF_SIGPENDING    0x00010000
+ ^
+In file included from ./bcm2708.d/linux/thread_info.h:42:0,
+                 from ./bcm2708.d/linux/preempt.h:4,
+                 from ./bcm2708.d/linux/spinlock.h:7,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/asm/thread_info.h:64:0: note: this is the location of the previous definition
+ #define TIF_SIGPENDING  0
+ ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/include/pmm.h:7:0,
+                 from bcm2708.dummy.c:28:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/process/proc.h:109:0: warning: "current" redefined [enabled by default]
+ #define current (mycpu()->__current)
+ ^
+In file included from ./bcm2708.d/asm/current.h:3:0,
+                 from ./bcm2708.d/linux/wait.h:7,
+                 from ./bcm2708.d/linux/completion.h:4,
+                 from ./bcm2708.d/linux/mm_types.h:11,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/asm-generic/current.h:7:0: note: this is the location of the previous definition
+ #define current get_current()
+ ^
+In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/mm/vmm.h:8:0,
+                 from bcm2708.dummy.c:76:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/libs/rb_tree.h:6:16: error: redefinition of 'struct rb_node'
+ typedef struct rb_node {
+                ^
+In file included from ./bcm2708.d/linux/mm_types.h:9:0,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/rbtree.h:7:8: note: originally defined here
+ struct rb_node {
+        ^
+In file included from bcm2708.dummy.c:76:0:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/mm/vmm.h:75:8: error: redefinition of 'struct mm_struct'
+ struct mm_struct {
+        ^
+In file included from ./bcm2708.d/linux/bug.h:4:0,
+                 from ./bcm2708.d/linux/thread_info.h:5,
+                 from ./bcm2708.d/linux/preempt.h:4,
+                 from ./bcm2708.d/linux/spinlock.h:7,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/asm/bug.h:31:8: note: originally defined here
+ struct mm_struct;
+        ^
+In file included from bcm2708.dummy.c:76:0:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/mm/vmm.h:104:20: error: conflicting types for 'find_vma'
+ struct vma_struct *find_vma(struct mm_struct *mm, uintptr_t addr);
+                    ^
+In file included from ./bcm2708.d/linux/scatterlist.h:6:0,
+                 from ./bcm2708.d/asm/dma-mapping.h:5,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/mm.h:309:32: note: previous declaration of 'find_vma' was here
+ extern struct vm_area_struct * find_vma(struct mm_struct * mm, unsigned long addr);
+                                ^
+bcm2708.dummy.c: In function 'ucore_kva_alloc_pages':
+bcm2708.dummy.c:83:14: error: 'UCORE_KAP_IO' undeclared (first use in this function)
+  if (flags & UCORE_KAP_IO) {
+              ^
+bcm2708.dummy.c:86:4: warning: passing argument 2 of '____atomic_set_bit' from incompatible pointer type [enabled by default]
+    SetPageIO(&pages[i]);
+    ^
+In file included from ./bcm2708.d/linux/bitops.h:17:0,
+                 from ./bcm2708.d/linux/kernel.h:11,
+                 from ./bcm2708.d/asm-generic/bug.h:8,
+                 from ./bcm2708.d/asm/bug.h:27,
+                 from ./bcm2708.d/linux/bug.h:4,
+                 from ./bcm2708.d/linux/thread_info.h:5,
+                 from ./bcm2708.d/linux/preempt.h:4,
+                 from ./bcm2708.d/linux/spinlock.h:7,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/asm/bitops.h:7:20: note: expected 'volatile long unsigned int *' but argument is of type 'unsigned int *'
+ static inline void ____atomic_set_bit(unsigned int bit, volatile unsigned long *p)
+                    ^
+bcm2708.dummy.c:86:4: warning: passing argument 2 of '_set_bit' from incompatible pointer type [enabled by default]
+    SetPageIO(&pages[i]);
+    ^
+In file included from ./bcm2708.d/linux/bitops.h:17:0,
+                 from ./bcm2708.d/linux/kernel.h:11,
+                 from ./bcm2708.d/asm-generic/bug.h:8,
+                 from ./bcm2708.d/asm/bug.h:27,
+                 from ./bcm2708.d/linux/bug.h:4,
+                 from ./bcm2708.d/linux/thread_info.h:5,
+                 from ./bcm2708.d/linux/preempt.h:4,
+                 from ./bcm2708.d/linux/spinlock.h:7,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/asm/bitops.h:67:13: note: expected 'volatile long unsigned int *' but argument is of type 'unsigned int *'
+ extern void _set_bit(int nr, volatile unsigned long * p);
+             ^
+bcm2708.dummy.c: In function 'arm_dma_alloc':
+bcm2708.dummy.c:94:12: error: 'KERN_ALERT' undeclared (first use in this function)
+     printk(KERN_ALERT "dma_alloc_writecombine size %08x\n", size);
+            ^
+bcm2708.dummy.c:94:23: error: expected ')' before string constant
+     printk(KERN_ALERT "dma_alloc_writecombine size %08x\n", size);
+                       ^
+bcm2708.dummy.c:97:7: error: 'UCORE_KAP_IO' undeclared (first use in this function)
+       UCORE_KAP_IO);
+       ^
+bcm2708.dummy.c: At top level:
+bcm2708.dummy.c:108:14: error: conflicting types for 'autoremove_wake_function'
+ DDE_WEAK int autoremove_wake_function(wait_queue_t * a, unsigned int b, int c, void * d) {
+              ^
+In file included from ./bcm2708.d/linux/completion.h:4:0,
+                 from ./bcm2708.d/linux/mm_types.h:11,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/wait.h:87:5: note: previous declaration of 'autoremove_wake_function' was here
+ int autoremove_wake_function(wait_queue_t *wait, unsigned mode, int sync, void *key);
+     ^
+In file included from ./bcm2708.d/linux/byteorder/little_endian.h:4:0,
+                 from ./bcm2708.d/uapi/asm/byteorder.h:4,
+                 from ./bcm2708.d/asm-generic/bitops/le.h:5,
+                 from ./bcm2708.d/asm/bitops.h:104,
+                 from ./bcm2708.d/linux/bitops.h:17,
+                 from ./bcm2708.d/linux/kernel.h:11,
+                 from ./bcm2708.d/asm-generic/bug.h:8,
+                 from ./bcm2708.d/asm/bug.h:27,
+                 from ./bcm2708.d/linux/bug.h:4,
+                 from ./bcm2708.d/linux/thread_info.h:5,
+                 from ./bcm2708.d/linux/preempt.h:4,
+                 from ./bcm2708.d/linux/spinlock.h:7,
+                 from ./bcm2708.d/linux/mm_types.h:8,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+bcm2708.dummy.c: In function 'bcm_dma_wait_idle':
+bcm2708.dummy.c:179:18: error: 'dma_chan_base' undeclared (first use in this function)
+     while (readl(dma_chan_base + BCM2708_DMA_CS) & BCM2708_DMA_ACTIVE)
+                  ^
+./bcm2708.d/uapi/linux/byteorder/little_endian.h:12:51: note: in definition of macro '__le32_to_cpu'
+ #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
+                                                   ^
+./bcm2708.d/asm/io.h:43:32: note: in expansion of macro 'readl_relaxed'
+ #define readl(c)  ({ u32 __v = readl_relaxed(c); __iormb(); __v; })
+                                ^
+bcm2708.dummy.c:179:12: note: in expansion of macro 'readl'
+     while (readl(dma_chan_base + BCM2708_DMA_CS) & BCM2708_DMA_ACTIVE)
+            ^
+bcm2708.dummy.c: At top level:
+bcm2708.dummy.c:252:15: error: conflicting types for 'finish_wait'
+ DDE_WEAK void finish_wait(wait_queue_head_t * a, wait_queue_t * b) {
+               ^
+In file included from ./bcm2708.d/linux/completion.h:4:0,
+                 from ./bcm2708.d/linux/mm_types.h:11,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/wait.h:85:6: note: previous declaration of 'finish_wait' was here
+ void finish_wait(wait_queue_head_t *q, wait_queue_t *wait);
+      ^
+bcm2708.dummy.c:277:15: error: conflicting types for 'prepare_to_wait'
+ DDE_WEAK void prepare_to_wait(wait_queue_head_t * a, wait_queue_t * b, int c) {
+               ^
+In file included from ./bcm2708.d/linux/completion.h:4:0,
+                 from ./bcm2708.d/linux/mm_types.h:11,
+                 from ./bcm2708.d/asm/dma-mapping.h:4,
+                 from bcm2708.dummy.c:2:
+./bcm2708.d/linux/wait.h:83:6: note: previous declaration of 'prepare_to_wait' was here
+ void prepare_to_wait(wait_queue_head_t *q, wait_queue_t *wait, int state);
+      ^
+bcm2708.dummy.c: In function 'request_threaded_irq':
+bcm2708.dummy.c:293:3: warning: passing argument 2 of 'register_irq' from incompatible pointer type [enabled by default]
+   register_irq(irq, handler, NULL);
+   ^
+In file included from bcm2708.dummy.c:29:0:
+/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/driver/picirq.h:12:6: note: expected 'ucore_irq_handler_t' but argument is of type 'irq_handler_t'
+ void register_irq(int irq, ucore_irq_handler_t handler, void *opaque);
+      ^
+make[3]: *** [/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/obj/kernel/rpifb/bcm2708.dummy.o] Error 1
+make[2]: *** [rpifb] Error 2
+make[1]: *** [subdir] Error 2
+make: *** [kernel] Error 2
+make: *** No rule to make target `/Users/cc/Documents/course/OS/UCORE/ucore_plus/ucore/obj/kernel/kernel-arm.elf', needed by `kernel.img'.  Stop.
