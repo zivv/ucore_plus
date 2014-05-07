@@ -1,10 +1,5 @@
 /*
- * See page 113 of BCM2835 ARM peripherals:
- * * valid GPU interrupts are 29, 43..57
- * * valid ARM interrupts are 0..7
- * In this code,
- * * cpu 0..7 are mapped to irq 0..7, gpu 29 is mapped irq 29, gpu 43..57 are ignored.
- * * IRQ 8..28 and 30..31 are deemed invalid
+ * See page 113 of BCM2835 ARM peripherals
  */
 #include <stdlib.h>
 
