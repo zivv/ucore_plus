@@ -14,7 +14,7 @@ OBJS := bootasm.o bootmain.o eabi_utils.o memcpy.o
 all: kernel.img
 
 #KERNEL_ELF :=/Users/cc/Documents/course/OS/UCORE/ucore_plus/ucore/obj/kernel/kernel-arm.elf 
-KERNEL_ELF := /Users/cc/Documents/course/OS/UCORE/ucore_plus/ucore/obj/kernel/kernel-arm.elf
+KERNEL_ELF := ../ucore/obj/kernel/kernel-arm.elf
 kernel.img: $(TARGET) $(KERNEL_ELF)
 	rm -f $@
 	dd if=$(TARGET) of=$@
