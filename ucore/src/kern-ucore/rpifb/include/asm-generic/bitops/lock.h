@@ -1,4 +1,0 @@
-#ifndef __ASM_GENERIC_BITOPS_LOCK_H__
-#define __ASM_GENERIC_BITOPS_LOCK_H__
-
-#endif /* ! __ASM_GENERIC_BITOPS_LOCK_H__ */

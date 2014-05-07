@@ -37,95 +37,12 @@ Enter /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/a
 Enter /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/arch/arm/mach-raspberrypi
 Enter /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb
 Enter /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/cfb
-CC cfbcopyarea.c
-<command-line>:0:0: warning: "__LINUX_ARM_ARCH__" redefined [enabled by default]
-<command-line>:0:0: note: this is the location of the previous definition
-In file included from cfbcopyarea.c:28:0:
-/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/linux/fb.h:177:38: warning: 'struct notifier_block' declared inside parameter list [enabled by default]
- extern int fb_register_client(struct notifier_block *nb);
-                                      ^
-/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/linux/fb.h:177:38: warning: its scope is only this definition or declaration, which is probably not what you want [enabled by default]
-/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/linux/fb.h:178:40: warning: 'struct notifier_block' declared inside parameter list [enabled by default]
- extern int fb_unregister_client(struct notifier_block *nb);
-                                        ^
-In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/dde.h:14:0,
-                 from fb_draw.h:7,
-                 from cfbcopyarea.c:31:
-/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/libs/types.h:88:0: warning: "offsetof" redefined [enabled by default]
- #define offsetof(type, member)                                      \
- ^
-In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/uapi/linux/posix_types.h:4:0,
-                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/uapi/linux/types.h:6,
-                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/linux/types.h:4,
-                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/linux/list.h:4,
-                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/linux/module.h:4,
-                 from cfbcopyarea.c:25:
-/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/linux/stddef.h:13:0: note: this is the location of the previous definition
- #define offsetof(TYPE,MEMBER) __compiler_offsetof(TYPE,MEMBER)
- ^
-CC cfbfillrect.c
-<command-line>:0:0: warning: "__LINUX_ARM_ARCH__" redefined [enabled by default]
-<command-line>:0:0: note: this is the location of the previous definition
-In file included from cfbfillrect.c:18:0:
-/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/linux/fb.h:177:38: warning: 'struct notifier_block' declared inside parameter list [enabled by default]
- extern int fb_register_client(struct notifier_block *nb);
-                                      ^
-/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/linux/fb.h:177:38: warning: its scope is only this definition or declaration, which is probably not what you want [enabled by default]
-/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/linux/fb.h:178:40: warning: 'struct notifier_block' declared inside parameter list [enabled by default]
- extern int fb_unregister_client(struct notifier_block *nb);
-                                        ^
-In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/dde.h:14:0,
-                 from fb_draw.h:7,
-                 from cfbfillrect.c:20:
-/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/libs/types.h:88:0: warning: "offsetof" redefined [enabled by default]
- #define offsetof(type, member)                                      \
- ^
-In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/uapi/linux/posix_types.h:4:0,
-                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/uapi/linux/types.h:6,
-                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/linux/types.h:4,
-                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/linux/list.h:4,
-                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/linux/module.h:4,
-                 from cfbfillrect.c:16:
-/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/linux/stddef.h:13:0: note: this is the location of the previous definition
- #define offsetof(TYPE,MEMBER) __compiler_offsetof(TYPE,MEMBER)
- ^
-CC cfbimgblt.c
-<command-line>:0:0: warning: "__LINUX_ARM_ARCH__" redefined [enabled by default]
-<command-line>:0:0: note: this is the location of the previous definition
-In file included from cfbimgblt.c:39:0:
-/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/linux/fb.h:177:38: warning: 'struct notifier_block' declared inside parameter list [enabled by default]
- extern int fb_register_client(struct notifier_block *nb);
-                                      ^
-/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/linux/fb.h:177:38: warning: its scope is only this definition or declaration, which is probably not what you want [enabled by default]
-/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/linux/fb.h:178:40: warning: 'struct notifier_block' declared inside parameter list [enabled by default]
- extern int fb_unregister_client(struct notifier_block *nb);
-                                        ^
-In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/dde.h:14:0,
-                 from fb_draw.h:7,
-                 from cfbimgblt.c:41:
-/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/libs/types.h:88:0: warning: "offsetof" redefined [enabled by default]
- #define offsetof(type, member)                                      \
- ^
-In file included from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/uapi/linux/posix_types.h:4:0,
-                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/uapi/linux/types.h:6,
-                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/linux/types.h:4,
-                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/linux/list.h:4,
-                 from /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/linux/module.h:4,
-                 from cfbimgblt.c:37:
-/Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/src/kern-ucore/rpifb/include/linux/stddef.h:13:0: note: this is the location of the previous definition
- #define offsetof(TYPE,MEMBER) __compiler_offsetof(TYPE,MEMBER)
- ^
-cfbimgblt.c:43:0: warning: "DEBUG" redefined [enabled by default]
- #define DEBUG
- ^
-<command-line>:0:0: note: this is the location of the previous definition
-LD /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/obj/kernel/rpifb/cfb/builtin.o
 Building uCore Kernel for arm
 Linking Initrd into kernel, using /Users/cc/Documents/course/os/UCORE/ucore_plus/ucore/obj/sfs.img
 Linking uCore
 Making uImage
 Image Name:   linux
-Created:      Wed May  7 12:54:06 2014
+Created:      Wed May  7 13:03:40 2014
 Image Type:   ARM Linux Kernel Image (uncompressed)
 Data Size:    4563648 Bytes = 4456.69 kB = 4.35 MB
 Load Address: 00008000
@@ -134,8 +51,8 @@ rm -f kernel.img
 dd if=elfloader-rpi.bin of=kernel.img
 5+1 records in
 5+1 records out
-2640 bytes transferred in 0.000305 secs (8657516 bytes/sec)
+2640 bytes transferred in 0.000035 secs (75326276 bytes/sec)
 dd if=/Users/cc/Documents/course/OS/UCORE/ucore_plus/ucore/obj/kernel/kernel-arm.elf of=kernel.img seek=8 conv=notrunc # elfloader-rpi.bin occupies 4K
 10671+1 records in
 10671+1 records out
-5463803 bytes transferred in 0.024628 secs (221853982 bytes/sec)
+5463803 bytes transferred in 0.034092 secs (160266664 bytes/sec)
