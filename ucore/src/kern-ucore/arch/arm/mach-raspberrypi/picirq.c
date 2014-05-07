@@ -34,7 +34,7 @@ static bool did_init = 0;
 
 #define SHORTCUT_MASK 0x01ffc00
 #define SHORTCUT_IGNORE_BITS 10
-#define SHORTCUT_IGNORE_MASK 0x00003ff
+#define SHORTCUT_IGNORE_MASK 0xfffffc00
 // shortcuts are GPU IRQ 7, 9, 10, 18, 19, 53, 54, 55, 56, 57, 62
 static unsigned int shortcut_map[11] = {15, 17, 18, 26, 27, 61, 62, 63, 64, 65, 70};
 
@@ -110,7 +110,7 @@ void irq_handler()
 		if (firstbit0 < PENDING_BASIC_NR_IRQS) {
 			irq = firstbit0;
     } else if (pending0 & SHORTCUT_MASK) {
-      irq = shortcut_map[__builtin_ctz(pending0|SHORTCUT_IGNORE_MASK) -
+      irq = shortcut_map[__builtin_ctz(pending0&SHORTCUT_IGNORE_MASK) -
         SHORTCUT_IGNORE_BITS];
 		} else if (firstbit0 == PENDING_1_BIT) {
 			uint32_t pending1 = inw(IRQ_PENDING_1);
