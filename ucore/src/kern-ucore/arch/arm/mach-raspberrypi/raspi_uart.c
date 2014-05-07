@@ -17,7 +17,7 @@
 #define AUX_MU_LSR_REG (UART1_BASE+0x54)
 #define AUX_MU_LSR_REG_TX_EMPTY 0x20
 #define AUX_MU_LSR_REG_DATA_READY 0x01
-#define UART1_IRQ 29
+#define UART1_IRQ 37
 
 static bool serial_exists = 0;
 
