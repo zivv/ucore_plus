@@ -639,10 +639,13 @@ out:
 
 int bcm2708_fb_probe(struct platform_device *dev)
 {
+    pr_info("bcm2708_fb_probe\n");
 	struct bcm2708_fb *fb;
 	int ret;
 
+    pr_info("kzalloc begin\n");
 	fb = kzalloc(sizeof(struct bcm2708_fb), GFP_KERNEL);
+    pr_info("kzalloc done!\n");
 	if (!fb) {
 		dev_err(&dev->dev,
 			"could not allocate new bcm2708_fb struct\n");
@@ -650,7 +653,7 @@ int bcm2708_fb_probe(struct platform_device *dev)
 		goto free_region;
 	}
 
-	bcm2708_fb_debugfs_init(fb);
+	//bcm2708_fb_debugfs_init(fb);
 
 	fb->cb_base = dma_alloc_writecombine(&dev->dev, SZ_64K,
 					     &fb->cb_handle, GFP_KERNEL);

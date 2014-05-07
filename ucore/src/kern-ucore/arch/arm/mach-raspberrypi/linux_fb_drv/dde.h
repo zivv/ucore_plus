@@ -16,6 +16,10 @@
 #define UCORE_KAP_IO 0x00000001
 #define WARN(...) kprintf(__VA_ARGS__)
 
+typedef unsigned int gfp_t;
+
+void *dde_kmalloc(size_t size, gfp_t flags);
+
 void *dde_kva_alloc_pages(size_t n, unsigned int flags);
 
 int dde_mailbox_read(unsigned int channel, uint32_t * data);

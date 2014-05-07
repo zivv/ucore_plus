@@ -19,5 +19,10 @@
 *.org
 
 # changcheng's script
-cc*.sh
+#cc*.sh
 cc*.py
+
+*.img
+
+tags
+cscope.out

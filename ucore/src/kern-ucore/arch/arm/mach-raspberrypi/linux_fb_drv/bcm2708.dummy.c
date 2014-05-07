@@ -47,9 +47,9 @@ DDE_WEAK void __init_waitqueue_head(wait_queue_head_t * a, const char * b, struc
 	dde_printf("__init_waitqueue_head not implemented\n");
 }
 
-DDE_WEAK void * __kmalloc(size_t a, gfp_t b) {
-	dde_printf("__kmalloc not implemented\n");
-	return 0;
+DDE_WEAK void *__kmalloc(size_t size, gfp_t flags)
+{
+    return dde_kmalloc(size,flags);
 }
 
 DDE_WEAK void __memzero(void * a, __kernel_size_t b) {
@@ -239,7 +239,7 @@ DDE_WEAK void kfree(const void * a) {
 struct kernel_param_ops param_ops_int;
 
 DDE_WEAK int platform_driver_register(struct platform_driver * a) {
-    bcm2708_fb_probe(NULL);
+    return bcm2708_fb_probe(NULL);
 	dde_printf("platform_driver_register not implemented\n");
 	return 0;
 }
@@ -253,7 +253,7 @@ DDE_WEAK void prepare_to_wait(wait_queue_head_t * a, wait_queue_t * b, int c) {
 }
 
 DDE_WEAK int printk(const char * a, ...) {
-	dde_printf("printk not implemented\n");
+	dde_printf(a);
 	return 0;
 }
 

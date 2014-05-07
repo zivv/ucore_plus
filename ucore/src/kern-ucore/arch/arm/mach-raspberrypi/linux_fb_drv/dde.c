@@ -2,6 +2,20 @@
 
 #include <pmm.h>
 #include <mailbox.h>
+#include <slab.h>
+
+#define ___GFP_ZERO 0x8000u
+#define __GFP_ZERO	((gfp_t)___GFP_ZERO)	/* Return zeroed page on success */
+
+void *dde_kmalloc(size_t size, gfp_t flags)
+{
+	void *ptr = kmalloc(size);
+
+	if (flags | __GFP_ZERO) {
+		memset(ptr, 0, size);
+	}
+	return ptr;
+}
 
 void *dde_kva_alloc_pages(size_t n, unsigned int flags)
 {

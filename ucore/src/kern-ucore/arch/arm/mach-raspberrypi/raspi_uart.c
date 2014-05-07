@@ -37,10 +37,12 @@ void serial_init_early()
 	serial_exists = 1;
 
 	//fb_init();
-    //CCTODO
-    //if (bcm2708_fb_init()) {
-    //    panic("fb init failed\n");
-    //}
+    kprintf("Initing BCM2708_FB\n");
+    if (bcm2708_fb_init()) {
+        panic("BCM2708_FB init failed\n");
+    } else {
+        kprintf("BCM2708_FB inited\n");
+    }
 }
 
 void serial_init_mmu()
@@ -63,9 +65,9 @@ static void serial_putc_sub(int c)
 	while (!(inb(AUX_MU_LSR_REG) & AUX_MU_LSR_REG_TX_EMPTY)) ;
 	dmb();
 	outb(AUX_MU_IO_REG, c);
-	dmb();
+	//dmb();
 	//fb_write(c);
-	dmb();
+	//dmb();
 }
 
 /* serial_putc - print character to serial port */
