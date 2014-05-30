@@ -16,6 +16,7 @@
 #include <sched.h>
 #include <kio.h>
 #include <mp.h>
+#include <syscall.h>
 #include <mod.h>
 
 int kern_init(void) __attribute__ ((noreturn));
@@ -55,6 +56,8 @@ int kern_init(void)
 
 	clock_init();		// init clock interrupt
 	mod_init();
+
+  syscall_init();
 
 	intr_enable();		// enable irq interrupt
 
