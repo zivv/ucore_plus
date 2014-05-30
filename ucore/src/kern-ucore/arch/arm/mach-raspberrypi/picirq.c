@@ -5,7 +5,7 @@
 
 #include <types.h>
 #include <arm.h>
-#include <picirq.h>
+#include <drivers/picirq.h>
 #include <clock.h>
 #include <serial.h>
 #include <intr.h>
@@ -82,7 +82,7 @@ void register_irq(int irq, ucore_irq_handler_t handler, void *opaque)
 		actions[irq].opaque = opaque;
 	} else {
 		//for rationale, read top of this file
-		kprintf("WARNING: register_irq: irq>=%d\n", NR_IRQS);
+		kprintf("WARNING: register_irq: invalid irq 0x%02x(%d)\n", irq, irq);
 	}
 }
 
@@ -124,6 +124,9 @@ void irq_handler()
 			panic("invalid basic pending register: 0x%08x\n",
 			      pending0);
 		}
+    if (irq != 0) {  // irq 0 is used by timer, ignore this irq info
+      kprintf("recieve irq 0x%02x(%d)\n", irq, irq);
+    }
 		if (actions[irq].handler) {
 			(*actions[irq].handler) (irq, actions[irq].opaque);
 		} else {
