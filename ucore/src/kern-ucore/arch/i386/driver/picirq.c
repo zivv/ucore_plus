@@ -12,7 +12,7 @@
 
 #define IRQ_SLAVE           2	// IRQ at which slave connects to master
 
-#define NR_IRQS             63
+#define NR_IRQS             129
 
 // Current IRQ mask.
 // Initial IRQ mask has interrupt 2 enabled (for slave 8259A).
@@ -179,9 +179,11 @@ void pic_init(void) {
   // for test
   register_irq(T_DEBUG, debug_monitor_handler, NULL);
   register_irq(T_BRKPT, debug_monitor_handler, NULL);
+  register_irq(T_SYSCALL, syscall_handler, NULL);
   register_irq(T_PGFLT, pgfault_handler_wrapper, NULL);
   register_irq(I_TIMER, timer_handler, NULL);
   register_irq(I_COM1, inout_handler, NULL);
+  register_irq(I_KBD, inout_handler, NULL);
   register_irq(I_IDE1, null_handler, NULL);
   register_irq(I_IDE2, null_handler, NULL);
 }
@@ -198,7 +200,7 @@ void irq_handler() {
   } else {
 		print_trapframe(irq_tf);
 		if (current != NULL) {
-			kprintf("unhandled trap.\n");
+			kprintf("unhandled trap 0x%02x(%d).\n", irq, irq);
 			do_exit(-E_KILLED);
 		}
 		panic("unexpected trap in kernel.\n");
