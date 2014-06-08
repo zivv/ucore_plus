@@ -24,12 +24,19 @@
 
 DEFINE_PERCPU_NOINIT(struct ipi_queue, ipi_queues);
 
+int ipicall_handler(int irq, void* data) {
+  do_ipicall();
+  return 0;
+}
+
 void ipi_init(void)
 {
 	struct ipi_queue *q = get_cpu_ptr(ipi_queues);
 	spinlock_init(&q->lock);
 	list_init(&q->head);
 	q->ipi_running = 0;
+
+  register_irq(T_IPICALL, ipicall_handler, NULL);
 }
 
 void do_ipicall(void)

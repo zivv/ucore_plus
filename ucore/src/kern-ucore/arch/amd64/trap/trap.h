@@ -4,6 +4,9 @@
 #include <types.h>
 #include <arch.h>
 
+/* # of irqs used in picirq */
+#define NR_IRQS             131
+
 /* Trap Numbers */
 #define T_SYSCALL 0x80
 #define T_IPI     0x81
@@ -43,6 +46,15 @@
 #define IRQ_IDE2                15
 #define IRQ_ERROR               19
 #define IRQ_SPURIOUS            31
+
+#define I_TIMER                 (IRQ_OFFSET+IRQ_TIMER)
+#define I_KBD                   (IRQ_OFFSET+IRQ_KBD)
+#define I_COM1                  (IRQ_OFFSET+IRQ_COM1)
+#define I_LPT1                  (IRQ_OFFSET+IRQ_LPT1)
+#define I_IDE1                  (IRQ_OFFSET+IRQ_IDE1)
+#define I_IDE2                  (IRQ_OFFSET+IRQ_IDE2)
+#define I_ERROR                 (IRQ_OFFSET+IRQ_ERROR)
+#define I_SPURIOUS              (IRQ_OFFSET+IRQ_SPURIOUS)
 
 // These are arbitrarily chosen, but with care not to overlap
 // processor defined exceptions or interrupt vectors.

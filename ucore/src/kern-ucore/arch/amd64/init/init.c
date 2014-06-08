@@ -126,6 +126,7 @@ int kern_init(uint64_t mbmagic, uint64_t mbmem)
 	refcache_init();
 
 	vmm_init();		// init virtual memory management
+  vmm_init_pgflt();
 	sched_init();		// init scheduler
 	proc_init();		// init process table
 	sync_init();		// init sync struct
@@ -147,6 +148,8 @@ int kern_init(uint64_t mbmagic, uint64_t mbmem)
 
 	//XXX put here?
 	bootaps();
+
+  syscall_init();
 
 	intr_enable();		// enable irq interrupt
 

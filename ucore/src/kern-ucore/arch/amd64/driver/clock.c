@@ -4,6 +4,7 @@
 #include <picirq.h>
 #include <kio.h>
 #include <lapic.h>
+#include <proc.h>
 
 /* *
  * Support for time-related hardware gadgets - the 8253 timer,
@@ -27,6 +28,20 @@
 
 volatile size_t ticks;
 
+int timer_handler(int irq, void* data) {
+	int id = myid();
+  if(id == 0){
+    ticks++;
+    run_timer_list();
+  }
+  refcache_tick();
+
+  assert(current != NULL);
+
+  lapic_eoi();
+  return 0;
+}
+
 /* *
  * clock_init - initialize 8253 clock to interrupt 100 times per second,
  * and then enable IRQ_TIMER.
@@ -38,4 +53,5 @@ void clock_init(void)
 
 	kprintf("++ setup timer interrupts\n");
 	pic_enable(IRQ_TIMER);
+  register_irq(I_TIMER, timer_handler, NULL);
 }
