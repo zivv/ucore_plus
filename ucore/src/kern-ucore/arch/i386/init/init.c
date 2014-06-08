@@ -44,6 +44,8 @@ int kern_init(void)
 	idt_init();		// init interrupt descriptor table
 
 	vmm_init();		// init virtual memory management
+  vmm_init_pgflt();
+
 	sched_init();		// init scheduler
 	proc_init();		// init process table
 	sync_init();		// init sync struct
